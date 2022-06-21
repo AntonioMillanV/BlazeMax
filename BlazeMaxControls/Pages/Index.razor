@@ -1,0 +1,22 @@
+﻿@page "/"
+@using System.Collections.ObjectModel
+@inject BlazeMaxControls.Services.TransactionService TService
+
+@*<PageBuilder TransactionType="ERPRO_PRODUCTO" />
+<hr />*@
+<VxTransactionFormCreator TransactionType="ERCAJ_BANCO" />
+<VxTransactionFormCreator TransactionType="ERCFG_PAIS" />
+
+@code {
+	//ERCAJ_BANCO ODataResult;
+
+	//ObservableCollection<CAJ_BANCOBIL> cbBil;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+
+		//ODataResult = await TService.First<ERCAJ_BANCO>();
+		//cbBil = new ObservableCollection<CAJ_BANCOBIL>(ODataResult.CAJ_BANCOBIL);
+	}
+}

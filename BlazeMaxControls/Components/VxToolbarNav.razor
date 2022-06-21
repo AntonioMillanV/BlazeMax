@@ -1,0 +1,146 @@
+﻿@inject BlazeMaxControls.Services.TransactionService TService
+@using veXMAX.Shared
+
+@typeparam TTrans where TTrans : new()
+
+<DxToolbar ItemRenderStyleMode="ToolbarRenderStyleMode.Plain">
+	<Items>
+		<DxToolbarItem Name="First" Click="@OnPrimeroClick"
+					   BeginGroup="true"
+					   IconCssClass="oi oi-media-step-backward"
+					   Tooltip="Primero" />
+		<DxToolbarItem Name="Prior" Click="@OnAnteriorClick" Enabled="@Prior"
+					   IconCssClass="oi oi-media-skip-backward"
+					   Tooltip="Anterior" />
+		<DxToolbarItem Name="Next" Click="@OnSiguienteClick" Enabled="@Next"
+					   IconCssClass="oi oi-media-skip-forward"
+					   Tooltip="Siguiente" />
+		<DxToolbarItem Name="Last" Click="@OnUltimoClick"
+					   IconCssClass="oi oi-media-step-forward"
+					   Tooltip="Último" />
+
+		<DxToolbarItem Text="Nuevo" BeginGroup="true" Enabled="@Enabled" />
+		<DxToolbarItem @ref="@TbEdit" Text="Editar" Enabled="@(IsNotEditing)" Click="@SwitchEditing" />
+		<DxToolbarItem @ref="@TbCancelEdit" Text="Cancelar Edición" Enabled="@(!IsNotEditing)" Click="@SwitchEditing" />
+		<DxToolbarItem Text="Registrar" />
+		<DxToolbarItem Text="Borrar" />
+		<DxToolbarItem Text="Plantillas">
+			<Items>
+				<DxToolbarItem Text="Crear una plantilla o modificar una existente, con los datos registrados" />
+				<DxToolbarItem Text="Usar esta plantilla al hacer click en 'Nuevo'" />
+				<DxToolbarItem Text="Borrar una Plantilla" />
+			</Items>
+		</DxToolbarItem>
+		<DxToolbarItem Text="Buscar" BeginGroup="true" />
+		<DxToolbarItem Text="Resultados" />
+		<DxToolbarItem Text="Cancelar Búsqueda" />
+		<DxToolbarItem Text="Lista" />
+		<DxToolbarItem Text="Imprimir" BeginGroup="true" Enabled="false" />
+		<DxToolbarItem Text="Importar de Excel" Enabled="false" />
+		<DxToolbarItem Text="Poliza o Póliza previa" Enabled="false" />
+		<DxToolbarItem Text="Historial de Cambios" Enabled="false" />
+		<DxToolbarItem Text="Formulario de Catálogo" Enabled="false" />
+	</Items>
+</DxToolbar>
+
+@code {
+	[Parameter]
+	public TTrans Model
+	{
+		get;set;
+	}
+
+	[Parameter]
+	public EventCallback<TTrans> ModelChanged { get; set; }
+
+	[Parameter]
+	public string Id { get; set; } = null;
+
+	private bool IsNotEditing { get; set; } = true;
+
+	private DxToolbarItem TbEdit { get; set; }
+	private DxToolbarItem TbCancelEdit { get; set; }
+
+	//Boolean IsNew = true;
+	Boolean Prior = true;
+	Boolean Next = true;
+	//Boolean Editing = false;
+	Boolean Enabled = true;
+
+	private void SetData(TTrans dataRet)
+	{
+	//Dictionary<string, object> Dic = VXModelTransactionHelper.GetPrimitives(typeof(TTrans), dataRet);
+
+
+		//_editFormData = (TData)Dic[typeof(TData).Name];
+
+        //foreach (var es in esclavas)
+		//{
+		//    // Solo para ver el valor
+		//    var value = Dic[es.Name];
+		//    es.Value = value;
+		//}
+		////Maestra para Edit
+		////_editFormData = dataRet.PRO_LINEA;
+		//Id = (_editFormData as VXModelPrimitive).Key;
+		//Convertir a classForEdit
+		//string jsonString = JsonConvert.SerializeObject(dataRet.PRO_LINEASUB);
+		//Data = JsonConvert.DeserializeObject<List<PRO_LINEASUB>>(jsonString);
+		//IsNew = false;
+	}
+
+	private async Task OnPrimeroClick()
+	{
+		//var DataRet = await TService.First<TTrans>();
+		//SetData(DataRet);
+		Prior = false;
+		Next = true;
+
+		Model = await TService.First<TTrans>();
+		await ModelChanged.InvokeAsync(Model);
+	}
+	private async Task OnAnteriorClick()
+	{
+		var DataRet = await TService.Prior<TTrans>(Id);
+		SetData(DataRet);
+		Prior = true;
+		Next = true;
+
+		Model = await TService.Prior<TTrans>(Id);
+		await ModelChanged.InvokeAsync(Model);
+	}
+	private async Task OnSiguienteClick()
+	{
+		var DataRet = await TService.Next<TTrans>(Id);
+		SetData(DataRet);
+		Prior = true;
+		Next = true;
+
+		Model = await TService.Next<TTrans>(Id);
+		await ModelChanged.InvokeAsync(Model);
+	}
+	private async Task OnUltimoClick()
+	{
+		var DataRet = await TService.Last<TTrans>();
+		SetData(DataRet);
+		Prior = true;
+		Next = false;
+		Model = await TService.Last<TTrans>();
+		await ModelChanged.InvokeAsync(Model);
+	}
+	private void OnRefrescarClick()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnRefrescarCacheClick()
+    {
+        throw new NotImplementedException();
+    }
+
+	private void SwitchEditing(ToolbarItemClickEventArgs obj)
+    {
+        IsNotEditing = !IsNotEditing;
+        InvokeAsync(StateHasChanged);
+    }
+}

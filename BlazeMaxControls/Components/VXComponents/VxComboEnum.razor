@@ -1,0 +1,69 @@
+﻿@using BlazeMaxControls.Helpers
+@using veXMAX.Resources
+
+@implements IVXComponent
+
+@inject IStringLocalizer<VXModelLabels> L
+
+<DxFormLayoutItem Caption="@Caption"
+				  ColSpanMd="12"
+				  BeginRow="@LayoutFieldAttribute.BeginRow"
+				  CssClass="@(LayoutFieldAttribute.ColSpan > 0 ? $"col-xxl-{LayoutFieldAttribute.ColSpan}" : string.Empty)">
+	<Template>
+		<div class="d-flex">
+			<div class="me-1 flex-grow-1 flex-shrink-1">
+				<DxComboBox Data="@EnumOptionsList"
+							TextFieldName="@nameof(ComboEnumWrapper.DisplayText)"
+							ValueFieldName="@nameof(ComboEnumWrapper.Type)"
+							@bind-Value="@Field"
+							SelectedItemChanged="@((val) => ComboChangedHandle(val))" />
+			</div>
+			<div class="ms-1 flex-grow-1 flex-shrink-1">
+				<DxTextBox @bind-Text="@sEnumCaption" ReadOnly="true" />
+			</div>
+		</div>
+	</Template>
+</DxFormLayoutItem>
+
+@code {
+	[Parameter]
+	public object Field { get; set; }
+
+	[Parameter]
+	public VXLayOutFieldAttribute LayoutFieldAttribute { get; set; }
+
+	[Parameter]
+	public VXMetaColumnAttributes MetaColumnAttributes { get; set; }
+
+	[Parameter]
+	public EventCallback<object> FieldChanged { get; set; }
+
+	private string Caption
+	{
+		get => MetaColumnAttributes.Description != null ? L[MetaColumnAttributes.Description] : LayoutFieldAttribute.Field;
+	}
+
+	private string sEnumCaption 
+	{ 
+		get => $"{Field.ToInt16()} - {Field.ToString()}";
+		set { } 
+	}
+
+	private List<ComboEnumWrapper> EnumOptionsList
+	{
+		get => Enum.GetValues(Field.GetType()).OfType<Enum>().Select(t => new ComboEnumWrapper { Type = t, DisplayText = t.ToSafeString() }).ToList();
+	}
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+	}
+
+	void ComboChangedHandle(ComboEnumWrapper value)
+	{
+		Field = value.Type;
+		FieldChanged.InvokeAsync(Field);
+		sEnumCaption = $"{value.Type.ToInt16()} - {value.DisplayText}";
+		StateHasChanged();
+	}
+}

@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Blazor" Version="21.2.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Frog\Blazor\veXMAX.Shared\veXMAX.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="veXMAX.Resources">
+      <HintPath>..\..\..\..\..\..\Frog\Blazor\veXMAX.Resources\bin\Debug\net6.0\veXMAX.Resources.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+
+</Project>

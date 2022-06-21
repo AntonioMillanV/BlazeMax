@@ -1,0 +1,31 @@
+﻿@using System.Collections
+
+@*<EditForm Model="@Data" Context="EditFormContext">*@
+	@*<DataAnnotationsValidator/>*@
+	<DxFormLayout @bind-Data="@Data">
+		@foreach (var FieldAttr in FieldAttributes)
+		{
+			 VXMetaColumnAttributes MetaAttr = (VXMetaColumnAttributes)Attribute.GetCustomAttribute(Data.GetType().GetProperty(FieldAttr.Field), typeof(VXMetaColumnAttributes));
+
+			<VXFormComponent @bind-Field="@(MasterAccessor[Data, FieldAttr.Field])" LayoutFieldAttribute="@FieldAttr" MetaColumnAttributes="@MetaAttr" @bind-Model="@Data" />
+		}
+	</DxFormLayout>
+@*</EditForm>*@
+
+@code {
+	[Parameter]
+	public VXModelPrimitive Data { get; set; }
+
+	[Parameter]
+	public List<VXLayOutFieldAttribute> FieldAttributes { get; set; }
+
+	[Parameter]
+	public EventCallback<VXModelPrimitive> DataChanged { get; set; }
+
+	private TypeAccessor MasterAccessor { get => TypeAccessor.Create(Data.GetType()); set { } }
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+	}
+}

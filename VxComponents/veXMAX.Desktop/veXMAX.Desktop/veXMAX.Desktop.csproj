@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Win.Design" Version="21.2.*-*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\veXMAX.Data.Interface\veXMAX.Data.Interface.csproj" />
+    <ProjectReference Include="..\..\veXMAX.Lib\veXMAX.Lib.csproj" />
+    <ProjectReference Include="..\..\veXMAX.Resources\veXMAX.Resources.csproj" />
+    <ProjectReference Include="..\..\veXMAX.Shared\veXMAX.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

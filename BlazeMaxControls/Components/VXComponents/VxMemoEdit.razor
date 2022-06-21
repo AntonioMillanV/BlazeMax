@@ -1,0 +1,36 @@
+﻿@using veXMAX.Resources
+
+@typeparam TField
+
+@inject IStringLocalizer<VXModelLabels> L
+
+<DxFormLayoutItem Caption="@Caption"
+					BeginRow="@LayoutFieldAttribute.BeginRow"
+					ColSpanMd="12"
+					CssClass="@(LayoutFieldAttribute.ColSpan > 0 ? $"col-xxl-{LayoutFieldAttribute.ColSpan}" : string.Empty)" 
+					>
+	<DxMemo Text="@(Field.IsNull() ? string.Empty : Field.ToString())" 
+			TextChanged="@(val => { FieldChanged.InvokeAsync(Field); })"
+			Rows="5" 
+			ResizeMode="MemoResizeMode.Vertical"
+				/>
+</DxFormLayoutItem>
+
+@code {
+	[Parameter]
+	public TField Field { get; set; }
+
+	[Parameter]
+	public EventCallback<TField> FieldChanged { get; set; }
+
+	[Parameter]
+	public VXLayOutFieldAttribute LayoutFieldAttribute { get; set; }
+
+	[Parameter]
+	public VXMetaColumnAttributes MetaColumnAttributes { get; set; }
+
+	private string Caption
+	{
+		get => MetaColumnAttributes.Description != null ? L[MetaColumnAttributes.Description] : LayoutFieldAttribute.Field;
+	}
+}

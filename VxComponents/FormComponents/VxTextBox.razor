@@ -1,0 +1,63 @@
+﻿@using DevExpress.Blazor
+@using VxComponents.Interfaces
+@using System.Linq.Expressions
+@using veXMAX.Shared.Attributes
+@using veXMAX.Resources
+
+@*@inject IStringLocalizer<VXModelLabels> L*@
+
+@implements IVxComponent
+
+<DxFormLayoutItem Caption="@Caption">
+	<DxTextBox @bind-Text="@Text" 
+			   CssClass="@CssClass" 
+			   Enabled="@Enabled"
+			   ReadOnly="@ReadOnly"
+			   Password="@Password"
+			   NullText="@PlaceHolder"
+			   ClearButtonDisplayMode="@ClearButtonDisplayMode"
+			   />
+</DxFormLayoutItem>
+
+@code {
+	[Parameter]
+	public string Text { get; set; }
+
+	[Parameter]
+	public EventCallback<string> TextChanged { get; set; }
+
+	[Parameter]
+	public string CssClass { get; set; }
+
+	[Parameter]
+	public bool Enabled { get; set; }
+
+	[Parameter]
+	public bool ReadOnly { get; set; }
+
+	[Parameter]
+	public bool Password { get; set; }
+
+	[Parameter]
+	public string PlaceHolder { get; set; }
+
+	[Parameter]
+	public DataEditorClearButtonDisplayMode ClearButtonDisplayMode { get; set; }
+
+	[Parameter]
+	public Expression<Func<string>> TextExpression { get; set; }
+
+	private string Caption
+	{
+			get
+			{
+				return MetaColumnAttributes.Description != null ? L[MetaColumnAttributes.Description] : LayoutFieldAttribute.Field;
+			}
+	}
+
+	[Parameter]
+	public VXLayOutFieldAttribute LayoutFieldAttribute { get; set; }
+
+	[Parameter]
+	public VXMetaColumnAttributes MetaColumnAttributes { get; set; }
+}

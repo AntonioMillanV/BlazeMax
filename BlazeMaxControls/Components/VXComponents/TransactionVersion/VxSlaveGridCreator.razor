@@ -1,0 +1,33 @@
+﻿@using veXMAX.Resources
+
+@inject IStringLocalizer<VXModelLabels> L
+
+<DxGrid Data="@Data"
+		EditMode="GridEditMode.PopupEditForm"
+		KeyFieldName="Key" >
+	<Columns>
+		<DxGridCommandColumn />
+		@foreach (var FieldAttribute in FieldAttributes)
+		{
+			var MetaAttr = (VXMetaColumnAttributes)Attribute.GetCustomAttribute(SlaveType.GetProperty(FieldAttribute.Field), typeof(VXMetaColumnAttributes));
+			<DxGridDataColumn FieldName="@FieldAttribute.Field" Caption="@(MetaAttr?.Description != null ? L[MetaAttr.Description] : FieldAttribute.Field)" />
+		}
+	</Columns>
+	<EditFormTemplate Context="EditFormContext">
+		@{ var Slave = (VXModelPrimitive)EditFormContext.EditModel; }
+		<VxMasterFormCreator @bind-Data="@Slave" FieldAttributes="@FieldAttributes" />
+	</EditFormTemplate>
+</DxGrid>
+
+@code {
+	[Parameter]
+	public object Data { get; set; }
+
+	[Parameter]
+	public EventCallback<object> DataChanged { get; set; }
+
+	[Parameter]
+	public List<VXLayOutFieldAttribute> FieldAttributes { get; set; }
+
+	private Type SlaveType { get => Data.GetType().GetGenericArguments()[0]; }
+}

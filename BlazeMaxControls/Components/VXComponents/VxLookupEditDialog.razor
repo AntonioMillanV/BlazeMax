@@ -1,0 +1,228 @@
+﻿@using BlazeMaxControls.Helpers
+@using veXMAX.Resources
+@using BlazeMaxControls.Services
+@using System.Reflection
+@using System.Threading
+@using System.Collections
+@using System.Linq.Expressions
+
+@implements IVXComponent
+
+@typeparam TLookup where TLookup : VXModelPrimitive, new()
+@typeparam TField
+
+@inject IStringLocalizer<VXModelLabels> L
+@inject LookUpService lookupService
+
+
+<DxFormLayoutItem Caption="@Caption"
+				  ColSpanMd="12"
+				  BeginRow="@LayoutFieldAttribute.BeginRow"
+				  CssClass="@(LayoutFieldAttribute.ColSpan > 0 ? $"col-xxl-{LayoutFieldAttribute.ColSpan}" : string.Empty)">
+	<Template>
+		<div class="d-flex">
+			<div class="flex-grow-1 flex-shrink-1">
+				<div class="input-group input-group-sm">
+					@*<DevExpress.Blazor.Internal.DxInput @bind-Value="@Field" />*@
+					<DxTextBox Text="@(Field as string)"
+							   
+							   @ref="@TextBox"
+							   InputCssClass="form-control" 
+							   @onfocus="@(() => { PopupVisible = true;})" 
+					/>
+					<DxButton IconCssClass="oi oi-external-link"
+							  Click="@(() => { PopupVisible = true;} )"
+							  class="btn btn-sm dx-btn btn-secondary shadow-none dxbs-editor-dropdown-button LookupButton" 
+							  style="padding: 4px 6px;"/>
+				</div>
+			</div>
+			<div class="ms-1 flex-grow-1 flex-shrink-1">
+				<DxTextBox @bind-Text="@sLookupCaption" ReadOnly="true" />
+			</div>
+		</div>
+		<DxPopup @bind-Visible="@PopupVisible" 
+				 HeaderText="@($"Seleccione {Caption}")"
+				 CloseOnEscape=true
+				 ShowFooter="true"
+				 ShowCloseButton="true"
+				 MinWidth="90%"
+				 Context="PopupContext" 
+				 EnableAdaptivity="@true"
+		>
+			<BodyTemplate>
+				@*<div class="align-self-end pl-2 pb-2">
+					<DxButton
+						Text="Column Chooser"
+						RenderStyle="ButtonRenderStyle.Secondary"
+						IconCssClass="btn-column-chooser"
+						CssClass="column-chooser-button"
+						Click="@ChooserClick" />
+				</div>*@
+				<DxGrid @ref="@Grid"
+						Data="@DataList"
+						AllowGroup="true"
+						ShowFilterRow="true"
+						ShowGroupPanel="true"
+						Context="GridContext"
+						AllowSort="true"
+						KeyFieldName="Key"
+						AllowSelectRowByClick="true"
+						PageSize="20"
+						SelectionMode="GridSelectionMode.Single"
+				>
+					<Columns>
+						@foreach(var prop in typeof(TLookup).GetProperties())
+						{
+							var meta = (VXMetaColumnAttributes)prop.GetCustomAttribute(typeof(VXMetaColumnAttributes));
+							if(meta != null)
+							{
+								<DxGridDataColumn FieldName="@prop.Name" 
+												  Caption="@(meta.Description != null ? L[meta.Description] : prop.Name)"
+												  MinWidth="80" />
+							}
+						}
+					</Columns>
+				</DxGrid>
+			</BodyTemplate>
+			<FooterContentTemplate>
+				<DxButton CssClass="popup-button" RenderStyle="ButtonRenderStyle.Primary" Text="Seleccionar" Click="@SelectItem"/>
+				<DxButton CssClass="popup-button" RenderStyle="ButtonRenderStyle.Secondary" Text="Cancelar" Click="@(() => PopupVisible = false)"/>
+			</FooterContentTemplate>
+		</DxPopup>
+	</Template>
+</DxFormLayoutItem>
+
+@code {
+	bool PopupVisible { get; set; }
+
+	DxGrid Grid { get; set; }
+
+	DxTextBox TextBox { get; set; }
+
+	//void ChooserClick()
+	//{
+	//	//Grid.ShowColumnChooser(".column-chooser-button");
+	//}
+
+	[Parameter]
+	public TField Field { get; set; }
+
+	[Parameter]
+	public VXLayOutFieldAttribute LayoutFieldAttribute { get; set; }
+
+	[Parameter]
+	public VXMetaColumnAttributes MetaColumnAttributes { get; set; }
+
+	[Parameter]
+	public EventCallback<TField> FieldChanged { get; set; }
+
+	//[Parameter]
+	//public ArrayList sModelKey { get; set; }
+
+	private string Caption
+	{
+		get => MetaColumnAttributes.Description != null ? L[MetaColumnAttributes.Description] : LayoutFieldAttribute.Field;
+	}
+
+	//private Type TLookup
+	//{
+	//	get => MetaColumnAttributes.LookUpPrimitive != string.Empty ?
+	//					AppDomain.CurrentDomain
+	//						.GetAssemblies()
+	//						.SelectMany(t => t.GetTypes())
+	//						.Where(t => String.Equals(t.Name, MetaColumnAttributes.LookUpPrimitive, StringComparison.Ordinal))
+	//						.First()
+	//						: null;
+	//	set { }
+	//}
+
+	List<TLookup> DataList { get; set; }
+
+	private string sLookupCaption { get; set; }
+
+	private List<VXLookUpConfigAttribute> lookupConfig
+	{
+		get
+		{
+			//return lookupType.GetCustomAttributes(typeof(VXLookUpConfigAttribute), false).Cast<VXLookUpConfigAttribute>().ToList();
+			return typeof(TLookup).GetCustomAttributes(typeof(VXLookUpConfigAttribute), false).Cast<VXLookUpConfigAttribute>().ToList();
+		}
+	}
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+		DataList = await GetDataAsync();
+	}
+
+	void SelectItem()
+	{
+		var selection = Grid.SelectedDataItem;
+
+		if(selection != null)
+		{
+			sLookupCaption = selection.GetType().GetProperty(lookupConfig[0].DescriptionField).GetValue(selection).ToString();
+
+			Field = (TField)selection.GetType().GetProperty(lookupConfig[0].KeyField).GetValue(selection);
+
+			TextBox.TextChanged.InvokeAsync(Field.ToString());
+
+			FieldChanged.InvokeAsync(Field);
+
+			PopupVisible = false;
+		}
+	}
+
+	private async Task<List<TLookup>> GetDataAsync(CancellationToken ct = default)
+	{
+		DataList = await lookupService.GetFull<TLookup>(lookupConfig[0].Filter, lookupConfig[0].OrderBy, 80000, 0, lookupConfig[0].Select);
+		return DataList;
+
+		//var result = await Task.Run(() => { 
+		//	var method = lookupService.GetType().GetMethod(nameof(lookupService.GetFull)).MakeGenericMethod(TLookup);
+		//	return method.Invoke(lookupService, new object[] { lookupConfig[0].Filter, lookupConfig[0].OrderBy, 80, 0, lookupConfig[0].Select }); 
+		//});
+		//var value = await (dynamic) lookupService.GetType().GetMethod(nameof(lookupService.GetFull)).MakeGenericMethod(TLookup).Invoke(lookupService, new object[] { lookupConfig[0].Filter, lookupConfig[0].OrderBy, 80, 0, lookupConfig[0].Select } );
+		//return value;
+	}
+
+	async Task HandleSelectedItemChange(TLookup value)
+	{
+		await Task.Run(() => {
+			if(value != null)
+			{
+				var Lacc = ObjectAccessor.Create(value);
+				Field = (TField)Lacc[lookupConfig[0].KeyField];
+				sLookupCaption = Lacc[lookupConfig[0].DescriptionField].ToSafeString();
+			}
+			else
+			{
+				sLookupCaption = string.Empty;
+				Field = default(TField);
+			}
+		});
+		await FieldChanged.InvokeAsync(Field);
+		StateHasChanged();
+	}
+
+	//private string RemplaceParameters(string sFiltro)
+ //       {
+ //           string[] sTokens = sFiltro.Split(' ');
+
+ //           string sNewFilter = string.Empty;
+ //           foreach (string sToken in sTokens)
+ //           {
+ //               string sValue = sToken;
+ //               if (sValue.StartsWith("@"))
+ //               {
+
+ //               }
+
+ //               if (!sNewFilter.IsDBNullOrStringEmpty())
+ //                   sNewFilter += " ";
+ //               sNewFilter += sValue;
+ //           }
+
+ //           return sNewFilter;
+ //       }
+}

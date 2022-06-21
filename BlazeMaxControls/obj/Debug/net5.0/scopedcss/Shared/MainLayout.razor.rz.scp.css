@@ -1,0 +1,23 @@
+.page[b-j4h4ierrwr] {
+    height: 100%;
+    overflow: hidden;
+}
+
+[b-j4h4ierrwr] .content {
+    padding: 1.1rem 2rem 0 2rem;
+    overflow: auto;
+}
+
+@media (max-width: 1199.98px) {
+    [b-j4h4ierrwr] .page-layout > .dx-gridlayout-root {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+
+[b-j4h4ierrwr] .fit-width {
+    max-width: 100%;
+}
+
+[b-j4h4ierrwr] .mw-1100 {
+    max-width: 1100px;
+}

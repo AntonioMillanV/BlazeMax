@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "07ce33ea-a9f6-4300-a014-f0c007361ffd": {
+      "ProjectGuid": "07ce33ea-a9f6-4300-a014-f0c007361ffd",
+      "DisplayName": "veXMAX.Shared",
+      "ColorIndex": 0
+    },
+    "007635ce-8e6a-484c-8fce-5d9ee0ceed86": {
+      "ProjectGuid": "007635ce-8e6a-484c-8fce-5d9ee0ceed86",
+      "DisplayName": "veXMAX.Desktop",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

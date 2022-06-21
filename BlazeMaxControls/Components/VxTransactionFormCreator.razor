@@ -1,0 +1,236 @@
+﻿@inject BlazeMaxControls.Services.TransactionService TService
+@inject IStringLocalizer<VXModelLabels> L
+
+@*@using Microsoft.AspNetCore.Components.Rendering*@
+@*@using Newtonsoft.Json*@
+@using System.ComponentModel.DataAnnotations.Schema
+@using BlazeMaxControls.Helpers
+@using veXMAX.Resources
+@using BlazeMaxControls.Components.VXComponents
+@using BlazeMaxControls.Components.VXComponents.TransactionVersion
+
+@typeparam TransactionType where TransactionType : new()
+
+<VxToolbarNav TTrans=TransactionType @bind-Model="Model" />
+
+@RenderLayout(_Layout)
+
+@code {
+	[Parameter]
+	public TransactionType Model { get; set; }
+
+	private List<VXLayOutGroupAttribute> VXGroups
+	{
+		get => typeof(TransactionType).GetCustomAttributes(typeof(VXLayOutGroupAttribute), false).Cast<VXLayOutGroupAttribute>().ToList();
+	}
+	private List<VXLayOutFieldAttribute> VXFields
+	{
+		get => typeof(TransactionType).GetCustomAttributes(typeof(VXLayOutFieldAttribute), false).Cast<VXLayOutFieldAttribute>().ToList();
+	}
+
+	//private Dictionary<string, Type> MasterDic;
+
+	LayoutItem _Layout;
+
+	//private EditContext editContext;
+
+	private Type MasterType { get; set; }
+
+	private TypeAccessor TransAccessor;
+	private ObjectAccessor MasterAccessor;
+
+	private Dictionary<string, object> ModelDic;
+	private Dictionary<string, Tuple<Type, object>> MasterDicT;
+
+	protected override Task OnInitializedAsync()
+	{
+		_Layout = OrganizeLayout(VXGroups);
+
+		//Model = Activator.CreateInstance<TransactionType>();
+		Model = new TransactionType();
+
+		TransAccessor = TypeAccessor.Create(typeof(TransactionType));
+
+		foreach (Member TMember in TransAccessor.GetMembers())
+		{
+			if (TMember.GetAttribute(typeof(NotMappedAttribute), false) != null)
+				continue;
+
+			if (TMember.GetAttribute(typeof(VXTransactionMasterAttribute), false) != null)
+				MasterAccessor = ObjectAccessor.Create(TransAccessor[Model, TMember.Name]);
+		}
+
+		//MasterDic = new Dictionary<string, Type>();
+		MasterDicT = new Dictionary<string, Tuple<Type, object>>();
+
+		foreach (var prop in MasterAccessor.Target.GetType().GetProperties())
+		{
+			//MasterDic.Add(prop.Name, prop.PropertyType);
+			MasterDicT.Add(prop.Name, Tuple.Create(prop.PropertyType, MasterAccessor[prop.Name]));
+		}
+
+		object oModel = (object)Model;
+		ModelDic = VXModelTransactionHelper.GetPrimitives(typeof(TransactionType), oModel);
+
+		//editContext = new(TransAccessor[Model, MasterAccessor.Target.GetType().Name]);
+
+		return base.OnInitializedAsync();
+	}
+
+	async Task Grid_EditModelSaving(GridEditModelSavingEventArgs e)
+	{
+
+	}
+
+	async Task Grid_DataItemDeleting(GridDataItemDeletingEventArgs e)
+	{
+
+	}
+
+	private RenderFragment RenderLayout(LayoutItem layout) => __builder =>
+	{
+		//<EditForm Model="@TransAccessor[Model, MasterAccessor.Target.GetType().Name]">
+		//	<DataAnnotationsValidator />
+		<DxFormLayout ChildContent="@BuildItem(layout, true)" />
+		//	<ValidationSummary />
+		//</EditForm>
+	};
+
+	private RenderFragment BuildItem(LayoutItem Item, bool FirstIteration = false) => __builder =>
+	{
+		if (Item.LeafContent.Any())
+		{
+			if (MasterAccessor.Target.GetType().Name == Item.LeafContent[0].Primitive)
+			{
+				<VxMasterFormCreator Data="@((VXModelPrimitive)TransAccessor[Model, Item.LeafContent[0].Primitive])" FieldAttributes="@Item.LeafContent" />
+			}
+			else
+			{
+				<VxSlaveGridCreator Data="@((TransAccessor[Model, Item.LeafContent[0].Primitive]))" FieldAttributes="@Item.LeafContent" />
+			}
+		}
+		if (Item.GroupContent.Any())
+		{
+			switch (Item.GroupAttribute.ContainerType)
+			{
+				case VXLayOutGroupEnum.ControlContainer:
+					foreach (LayoutItem GroupItem in Item.GroupContent)
+					{
+						<DxFormLayoutGroup Caption="@GroupItem.GroupAttribute.Description" ColSpanXl="GroupItem.GroupAttribute.ColSpan"
+										   ChildContent="BuildItem(GroupItem)" />
+					}
+					break;
+				case VXLayOutGroupEnum.GroupContainer:
+					if (Item.GroupAttribute.IsTab)
+					{
+						<DxFormLayoutTabPages Caption="@Item.GroupAttribute.Description" ColSpanXl="@Item.GroupAttribute.ColSpan"
+											  ChildContent="@BuildTabGroups(Item)" />
+					}
+					else
+					{
+						foreach (LayoutItem GroupItem in Item.GroupContent)
+						{
+							if (FirstIteration)
+							{
+								<DxFormLayoutGroup Caption="@Item.GroupAttribute.Description" ColSpanXl="GroupItem.GroupAttribute.ColSpan"
+												   ChildContent="BuildItem(GroupItem)" />
+							}
+							else
+							{
+								<DxFormLayoutGroup Caption="@GroupItem.GroupAttribute.Description" ColSpanLg="GroupItem.GroupAttribute.ColSpan"
+												   ChildContent="BuildItem(GroupItem)" />
+							}
+						}
+					}
+					break;
+				case VXLayOutGroupEnum.GridContainerInPlace:
+					break;
+				case VXLayOutGroupEnum.GridContainerEditForm:
+					break;
+				case VXLayOutGroupEnum.GridContainerFormInPlace:
+					break;
+			}
+		}
+	};
+
+	private RenderFragment BuildTabGroups(LayoutItem Item) => __builder =>
+	{
+		if (Item.GroupContent.Any())
+		{
+			foreach (LayoutItem Tab in Item.GroupContent)
+			{
+				<DxFormLayoutTabPage Caption="@Tab.GroupAttribute.Description" ColSpanLg="@Tab.GroupAttribute.ColSpan" ChildContent="@BuildItem(Tab)" />
+			}
+		}
+	};
+
+
+
+	private LayoutItem OrganizeLayout(List<VXLayOutGroupAttribute> VXGroups)
+	{
+		LayoutItem Root = new LayoutItem();
+
+		var rootAttributes = VXGroups.FindAll(gr => gr.ParentGroup == string.Empty && gr.Order == 0 && gr.Primitive == string.Empty);
+
+		if (rootAttributes.Count > 1)
+			throw new Exception("No puede existir mas de un grupo Raíz");
+
+		if (rootAttributes.Count == 0)
+		{
+			Root = new LayoutItem
+				{
+					GroupAttribute = new VXLayOutGroupAttribute
+					{
+						ParentGroup = string.Empty,
+						Description = string.Empty,
+						BeginRow = false,
+						BorderType = VXLayOutGroupBorderTypeEnum.Ligth,
+						CollapseButton = true,
+						ColSpan = 12,
+						ContainerType = VXLayOutGroupEnum.GroupContainer,
+						Group = "",
+						IsTab = false,
+						Order = 0
+					},
+				};
+			Root.GroupContent = NestGroupsAndFields(Root.GroupAttribute.Group, VXGroups);
+		}
+		if (rootAttributes.Count == 1)
+		{
+			Root = new LayoutItem
+				{
+					GroupAttribute = rootAttributes[0],
+					GroupContent = NestGroupsAndFields(rootAttributes[0].Group, VXGroups.Where(gr => gr != rootAttributes[0]).ToList())
+				};
+		}
+
+		return Root;
+	}
+
+	public List<LayoutItem> NestGroupsAndFields(string ParentGroupName, List<VXLayOutGroupAttribute> Groups)
+	{
+		List<VXLayOutGroupAttribute> iterativeGroups = Groups;
+
+		List<LayoutItem> ResultList = new List<LayoutItem>();
+
+		foreach (var group in iterativeGroups.Where(gr => gr.ParentGroup == ParentGroupName).OrderBy(gr => gr.Order))
+		{
+			LayoutItem layoutItem = new LayoutItem()
+				{ GroupAttribute = group };
+
+			if (VXFields.Where(field => field.Group == group.Group).ToList().Count > 0)
+			{
+				layoutItem.LeafContent = VXFields.Where(field => field.Group == group.Group).OrderBy(field => field.Order).ToList();
+			}
+
+			if (iterativeGroups.Remove(group))
+				layoutItem.GroupContent = NestGroupsAndFields(group.Group, iterativeGroups);
+			else
+				layoutItem.GroupContent = NestGroupsAndFields(group.Group, iterativeGroups.Where(gr => gr != group).ToList());
+
+			ResultList.Add(layoutItem);
+		}
+
+		return ResultList;
+	}
+}

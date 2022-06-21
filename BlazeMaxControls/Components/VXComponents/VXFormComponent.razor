@@ -1,0 +1,118 @@
+﻿@using veXMAX.Resources
+@using System.Linq.Expressions
+@using System.Collections
+@using Microsoft.AspNetCore.Components.CompilerServices;
+
+@implements IVXComponent
+
+@*@typeparam TControl where TControl : new()*@
+@typeparam TField
+
+@inject IStringLocalizer<VXModelLabels> L
+
+@RenderComponent()
+
+@code {
+	[Parameter]
+	public TField Field	{ get; set; }
+
+	[Parameter]
+	public VXLayOutFieldAttribute LayoutFieldAttribute { get; set; }
+
+	[Parameter]
+	public VXMetaColumnAttributes MetaColumnAttributes { get; set; }
+
+	[Parameter]
+	public EventCallback<TField> FieldChanged { get; set; }
+
+	[Parameter] 
+	public ValueEditContext Context { get; set; }
+
+	[Parameter]
+	public VXModelPrimitive Model { get; set; }
+
+	[Parameter]
+	public EventCallback<VXModelPrimitive> ModelChanged { get; set; }                                                                                                         
+
+	private string Caption
+	{
+		get => MetaColumnAttributes.Description != null ? L[MetaColumnAttributes.Description] : LayoutFieldAttribute.Field;
+	}
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+	}
+
+	RenderFragment RenderComponent() => __builder =>
+	{
+		switch (MetaColumnAttributes.Control)
+		{
+			case VXColumnControl.ComboEnumEdit:
+				<VxComboEnum Field="@Field"
+							 MetaColumnAttributes="@MetaColumnAttributes"
+							 LayoutFieldAttribute="@LayoutFieldAttribute" />
+				break;
+			case VXColumnControl.MemoEdit:
+				<VxMemoEdit @bind-Field="@Field" 
+							MetaColumnAttributes="@MetaColumnAttributes"
+							LayoutFieldAttribute="@LayoutFieldAttribute" />
+				break;
+			case VXColumnControl.LookUpEdit:
+				var TLookup = MetaColumnAttributes.LookUpPrimitive != string.Empty ?
+						AppDomain.CurrentDomain
+							.GetAssemblies()
+							.SelectMany(t => t.GetTypes())
+							.Where(t => String.Equals(t.Name, MetaColumnAttributes.LookUpPrimitive, StringComparison.Ordinal))
+							.First()
+							: null;
+				var TField = typeof(VxLookupEdit<,>).MakeGenericType(new Type[] { TLookup, typeof(TField) });
+				__builder.OpenComponent(0, TField);
+			//__builder.OpenComponent(0, typeof(VxLookupEdit<,>).MakeGenericType(new Type[] { TLookup, FieldType }));
+			//__builder.OpenComponent<VxLookupEdit>(0);
+				__builder.AddAttribute(1, "Field", Field);
+				__builder.AddAttribute(2, "LayoutFieldAttribute", LayoutFieldAttribute);
+				__builder.AddAttribute(2, "MetaColumnAttributes", MetaColumnAttributes);
+				__builder.AddAttribute(3, "Model", Model);
+				__builder.AddAttribute(4, "ModelChanged", EventCallback.Factory.Create<VXModelPrimitive>(this, () => { ModelChanged.InvokeAsync(Model); StateHasChanged(); }));
+				__builder.CloseComponent();
+
+				//<VxLookupEdit TField="TField"
+				//			  @bind-Field="@Field" 
+				//			  LayoutFieldAttribute="@LayoutFieldAttribute" 
+				//			  MetaColumnAttributes="@MetaColumnAttributes" />
+				break;
+			case VXColumnControl.LookUpEditDialog:
+				var TLookupd = MetaColumnAttributes.LookUpPrimitive != string.Empty ?
+						AppDomain.CurrentDomain
+							.GetAssemblies()
+							.SelectMany(t => t.GetTypes())
+							.Where(t => String.Equals(t.Name, MetaColumnAttributes.LookUpPrimitive, StringComparison.Ordinal))
+							.First()
+							: null;
+				var TFieldD = typeof(VxLookupEditDialog<,>).MakeGenericType(new Type[] { TLookupd, typeof(TField) });
+				__builder.OpenComponent(0, TFieldD);
+				//__builder.OpenComponent(0, typeof(VxLookupEdit<,>).MakeGenericType(new Type[] { TLookup, FieldType }));
+				//__builder.OpenComponent<VxLookupEdit>(0);
+				__builder.AddAttribute(1, "Field", Field);
+				__builder.AddAttribute(2, "LayoutFieldAttribute", LayoutFieldAttribute);
+				__builder.AddAttribute(2, "MetaColumnAttributes", MetaColumnAttributes);
+				__builder.CloseComponent();
+
+				//<VxLookupEditDialog @bind-Field="@Field" 
+				//					LayoutFieldAttribute="@LayoutFieldAttribute" 
+				//					MetaColumnAttributes="@MetaColumnAttributes" />
+				break;
+			case VXColumnControl.None:
+				break;
+			default: // TextEdit, SpinEdit, DateEdit
+				<DxFormLayoutItem Field="@LayoutFieldAttribute.Field"
+								  Caption="@Caption"
+								  BeginRow="LayoutFieldAttribute.BeginRow"
+								  ColSpanMd="12"
+								  CssClass="@(LayoutFieldAttribute.ColSpan > 0 ? $"col-xxl-{LayoutFieldAttribute.ColSpan}" : string.Empty)" 
+								  />
+				break;
+		}
+	};
+}

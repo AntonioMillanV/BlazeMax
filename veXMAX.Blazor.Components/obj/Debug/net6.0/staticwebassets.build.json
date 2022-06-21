@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "Hash": "2Ar48f5ypViHX7uDQyfwvdkQDaSOTH5ZNBuoVWcQhtY=",
+  "Source": "veXMAX.Blazor.Components",
+  "BasePath": "_content/veXMAX.Blazor.Components",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "veXMAX.Blazor.Components\\wwwroot",
+      "Source": "veXMAX.Blazor.Components",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\wwwroot\\",
+      "BasePath": "_content/veXMAX.Blazor.Components",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\obj\\Debug\\net6.0\\scopedcss\\bundle\\veXMAX.Blazor.Components.styles.css",
+      "SourceId": "veXMAX.Blazor.Components",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/veXMAX.Blazor.Components",
+      "RelativePath": "veXMAX.Blazor.Components.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\obj\\Debug\\net6.0\\scopedcss\\bundle\\veXMAX.Blazor.Components.styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\veXMAX.Blazor.Components.bundle.scp.css",
+      "SourceId": "veXMAX.Blazor.Components",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/veXMAX.Blazor.Components",
+      "RelativePath": "veXMAX.Blazor.Components.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\veXMAX.Blazor.Components.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\wwwroot\\background.png",
+      "SourceId": "veXMAX.Blazor.Components",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\wwwroot\\",
+      "BasePath": "_content/veXMAX.Blazor.Components",
+      "RelativePath": "background.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\background.png"
+    },
+    {
+      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\wwwroot\\exampleJsInterop.js",
+      "SourceId": "veXMAX.Blazor.Components",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\veXMAX.Blazor.Components\\wwwroot\\",
+      "BasePath": "_content/veXMAX.Blazor.Components",
+      "RelativePath": "exampleJsInterop.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\exampleJsInterop.js"
+    }
+  ]
+}
