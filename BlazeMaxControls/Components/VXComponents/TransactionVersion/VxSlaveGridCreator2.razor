@@ -1,0 +1,68 @@
+﻿@using veXMAX.Resources
+
+@inject IStringLocalizer<VXModelLabels> L
+
+<DxGrid Data="@Data"
+		EditMode="GridEditMode.PopupEditForm"
+		KeyFieldName="Key">
+	<Columns>
+		<DxGridCommandColumn />
+		@foreach (var FieldAttribute in FieldAttributes)
+		{
+			var MetaAttr = (VXMetaColumnAttributes)Attribute.GetCustomAttribute(SlaveType.GetProperty(FieldAttribute.Field), typeof(VXMetaColumnAttributes));
+			<DxGridDataColumn FieldName="@FieldAttribute.Field" Caption="@(MetaAttr?.Description != null ? L[MetaAttr.Description] : FieldAttribute.Field)" />
+		}
+	</Columns>
+	<EditFormTemplate Context="EditFormContext">
+		@{
+			var Slave = (VXModelPrimitive)EditFormContext.EditModel;
+		}
+		<VxMasterFormCreator @bind-Data="@Slave" FieldAttributes="@FieldAttributes" />
+	</EditFormTemplate>
+</DxGrid>
+
+@code {
+	[Parameter]
+	public object Data { get; set; }
+
+	[Parameter]
+	public EventCallback<object> DataChanged { get; set; }
+
+	[Parameter]
+	public List<VXLayOutFieldAttribute> FieldAttributes { get; set; }
+
+	[Parameter]
+	public List<LayoutItem> FieldLayout { get; set; }
+	//[Parameter]
+	//public VXMetaColumnAttributes MetaAttr { get; set; }
+
+	//private Type SlaveType { get => Data.GetType(); }
+	private Type SlaveType { get => Data.GetType().GetGenericArguments()[0]; }
+	protected override async Task OnInitializedAsync()
+	{
+		//foreach (var group in FieldLayout)
+		//{
+		//	if (group.GroupAttribute.ParentGroup.Any())
+		//	{
+		//		for (int i = 0; i < group.GroupContent.Count; i++)
+		//		{
+		//		FieldAttributes = (group.GroupContent[i].LeafContent);
+		//		}
+		//	}
+		//	//foreach (var leaf in group.LeafContent)
+		//	//{
+
+		//	//}
+		//	//if (group.GroupContent.Count > 0)
+		//	//{
+
+
+
+
+		//	//}
+		//}
+		//FieldAttributes = FieldLayout.LeafContent;
+		//FieldAttributes = System.Collections.Generic.List[veXMAX.Shared.Attributes.VXLayOutFieldAttribute];
+		await base.OnInitializedAsync();
+	}
+}

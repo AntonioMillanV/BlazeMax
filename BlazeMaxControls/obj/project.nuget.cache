@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TfktLyuPTOkqfsx3ItpgQCaeBpyWHEC1Ut8i8pYdLkBYngSvirQFuKlqH7oebYW1IrK8FmPALXgIYnZpAoDwIQ==",
+  "dgSpecHash": "LUQhiC0JxP03wUDR0PuZdXEAKi4bvpPxCg+BJveeBoB9I1YO9S6Ay/bpSRZzmkpREcVAmzrjivxnFD639aTEqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\BlazeMaxControls.csproj",
+  "projectFilePath": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\BlazeMaxControls.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Frog\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",
     "C:\\Users\\Frog\\.nuget\\packages\\azure.identity\\1.3.0\\azure.identity.1.3.0.nupkg.sha512",

@@ -1,0 +1,225 @@
+﻿@using System.Reflection
+@using veXMAX.Resources
+@using System.Linq.Expressions
+@using System.Collections
+@using Microsoft.AspNetCore.Components.CompilerServices;
+@using BlazeMaxControls.Helpers
+
+
+@implements IVXComponent
+
+@*@typeparam TControl where TControl : new()*@
+@*@typeparam TControl where TControl : new()*@
+@*@typeparam TField*@
+
+@inject IStringLocalizer<VXModelLabels> L
+
+@switch (_control)
+{
+	@*case "TextEdit":
+		if (description == string.Empty)
+		{
+			<DxFormLayoutItem Field="@Field" Caption="@Field" BeginRow=@BeginRow ColSpanMd="@Colspan">
+				<DxTextBox @bind-Text="@Field" />
+			</DxFormLayoutItem>
+		}
+		else
+		{
+			<DxFormLayoutItem Field="@Field" Caption=@L[description.ToString()] BeginRow=@BeginRow ColSpanMd="@Colspan">
+				<DxTextBox @bind-Text="@Field" />
+			</DxFormLayoutItem>
+		}
+		break;*@
+	case "MemoEdit":
+		if (description == string.Empty)
+		{
+			@*<DxFormLayoutItem Field="@Field" Caption="@Field">*@
+				<VxMemoEdit @bind-Field="@Field" MetaColumnAttributesField="@AttributeField" BeginRow=@BeginRow Colspan=@Colspan />
+			@*</DxFormLayoutItem>*@
+		}
+		else
+		{
+			@*<DxFormLayoutItem Field="@Field" Caption=@L[description.ToString()]>*@
+				<VxMemoEdit @bind-Field="@Field" MetaColumnAttributesField="@AttributeField" BeginRow=@BeginRow Colspan=@Colspan />
+			@*</DxFormLayoutItem>*@
+		}
+		break;
+	case "SpinEdit":
+		if (description == string.Empty)
+		{
+			<DxFormLayoutItem Field="@Field" Caption="@Field" BeginRow=@BeginRow ColSpanMd="@Colspan">
+				<DxSpinEdit @bind-Value="@IntValue" />
+			</DxFormLayoutItem>
+		}
+		else
+		{
+			<DxFormLayoutItem Field="@Field" Caption=@L[description.ToString()] BeginRow=@BeginRow ColSpanMd="@Colspan">
+				<DxSpinEdit @bind-Value="@IntValue" />
+			</DxFormLayoutItem>
+		}
+		break;
+	case "DateEdit":
+		if (description == string.Empty)
+		{
+			<DxFormLayoutItem Field="@Field" Caption="@Field" BeginRow=@BeginRow ColSpanMd="@Colspan">
+				<DxDateEdit @bind-Date="@DateTimeValue" />
+			</DxFormLayoutItem>
+		}
+		else
+		{
+			<DxFormLayoutItem Field="@Field" Caption=@L[description.ToString()] BeginRow=@BeginRow ColSpanMd="@Colspan">
+				<DxDateEdit @bind-Date="@DateTimeValue" />
+			</DxFormLayoutItem>
+		}
+
+		break;
+	case "ComboEnumEdit":
+		if (description == string.Empty)
+		{
+			<DxFormLayoutItem Field="@Field" Caption="@Field" BeginRow=@BeginRow ColSpanMd="@Colspan">
+				@*<VxComboEnum Field="@Field" BeginRow=@BeginRow Colspan=@Colspan />*@
+				<Template>
+					<div class="d-flex">
+						<div class="me-1 flex-grow-1 flex-shrink-1">
+							<DxComboBox Data="@EnumOptionsList"
+							TextFieldName="@nameof(ComboEnumWrapper.DisplayText)"
+							ValueFieldName="@nameof(ComboEnumWrapper.Type)"
+							@bind-Value="@Field"
+							SelectedItemChanged="@((val) => ComboChangedHandle(val))" />
+							@*SelectedItemChanged="@((val) => ComboChangedHandle(val))" />*@
+						</div>
+						<div class="ms-1 flex-grow-1 flex-shrink-1">
+							<DxTextBox @bind-Text="@sEnumCaption" ReadOnly="true" />
+						</div>
+					</div>
+				</Template>
+			</DxFormLayoutItem>
+		}
+		else
+		{
+			@*<DxFormLayoutItem Field="@Field" Caption=@L[description.ToString()]>*@
+				<VxComboEnum Field="@FieldAttrib" BeginRow=@BeginRow Colspan=@Colspan description=@description AttributeField="@AttributeField" />
+			@*</DxFormLayoutItem>*@
+		}
+
+		break;
+	case "LookUpEdit":
+		@RenderComponent()
+		break;
+
+
+
+}
+
+@code {
+	[Parameter]
+	public string Field { get; set; }
+	[Parameter]
+	public string LookUpPrimitive { get; set; }
+	[Parameter]
+	public object FieldAttrib { get; set; }
+	[Parameter]
+	public string  TFields { get; set; }
+	[Parameter]
+	public VXLayOutFieldAttribute LayoutFieldAttribute { get; set; }
+
+	[Parameter]
+	public ObjectAccessor Master { get; set; }
+
+	[Parameter]
+	public EventCallback<string> FieldChanged { get; set; }
+	//[Parameter]
+	//public EventCallback<object> FieldAttribChanged { get; set; }
+	[Parameter]
+	public string _control { get; set; }
+	[Parameter]
+	public string description { get; set; }
+	[Parameter]
+	public string AttributeField { get; set; }
+	[Parameter]
+	public bool BeginRow { get; set; }
+	[Parameter]
+	public int Colspan { get; set; }
+	[Parameter]
+	public DateTime DateTimeValue { get; set; }
+	[Parameter]
+	public decimal? IntValue { get; set; }
+	[Parameter]
+	public VXModelPrimitive Model { get; set; }
+	
+
+
+	//[Parameter]
+	//public VXModelPrimitive Model { get; set; }
+
+	//[Parameter]
+	//public EventCallback<VXModelPrimitive> ModelChanged { get; set; }
+
+	//private string Caption
+	//{
+	//	get => MetaColumnAttributes.Description != null ? L[MetaColumnAttributes.Description] : LayoutFieldAttribute.Field;
+	//}
+
+	protected override async Task OnInitializedAsync()
+	{
+		var T = Type.GetType(typeof(string).FullName);
+		await base.OnInitializedAsync();
+	}
+
+	RenderFragment RenderComponent() => __builder =>
+	{
+		switch (_control)
+		{
+			case "LookUpEdit":
+				var TLookupd = LookUpPrimitive != string.Empty ?
+						AppDomain.CurrentDomain
+							.GetAssemblies()
+							.SelectMany(t => t.GetTypes())
+							.Where(t => String.Equals(t.Name, LookUpPrimitive, StringComparison.Ordinal))
+							.First()
+							: null;
+				/*Type type = Type.GetType(TFields.PropertyType.Name); *///target type
+				//object o = Activator.CreateInstance(type); // an instance of target type
+				//YourType your = (YourType)o;
+				 Type type = Type.GetType("System."+TFields);
+				var TFieldD = typeof(VxLookupEdit2<,>).MakeGenericType(new Type[] { TLookupd, type});
+				__builder.OpenComponent(0, TFieldD);
+				//__builder.OpenComponent(0, typeof(VxLookupEdit<,>).MakeGenericType(new Type[] { TLookup, FieldType }));
+				//__builder.OpenComponent<VxLookupEdit>(0);
+				__builder.AddAttribute(1, "Field", Field);
+				__builder.AddAttribute(2, "description", description);
+				__builder.AddAttribute(3, "BeginRow", BeginRow);
+				__builder.AddAttribute(4, "Colspan", Colspan);
+				__builder.AddAttribute(5, "Model", Model);
+				__builder.CloseComponent();
+
+				//<VxLookupEditDialog @bind-Field="@Field"
+				//					LayoutFieldAttribute="@LayoutFieldAttribute"
+				//					MetaColumnAttributes="@MetaColumnAttributes" />
+				break;
+		}
+
+	};
+	void ComboChangedHandle(ComboEnumWrapper value)
+	{
+		Field = value.Type.ToString();
+		FieldChanged.InvokeAsync(Field);
+		sEnumCaption = $"{value.Type.ToInt16()} - {value.DisplayText}";
+		StateHasChanged();
+	}
+	private string Caption
+	{
+		get => description != null ? L[description] : AttributeField;
+	}
+
+	private string sEnumCaption
+	{
+		get => $"{Field.ToInt16()} - {Field.ToString()}";
+		set { }
+	}
+
+	private List<ComboEnumWrapper> EnumOptionsList
+	{
+		get => Enum.GetValues(Field.GetType()).OfType<Enum>().Select(t => new ComboEnumWrapper { Type = t, DisplayText = t.ToSafeString() }).ToList();
+	}
+}

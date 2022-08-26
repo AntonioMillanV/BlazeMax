@@ -7,8 +7,8 @@
 
 <DxFormLayoutItem Caption="@Caption"
 				  ColSpanMd="12"
-				  BeginRow="@LayoutFieldAttribute.BeginRow"
-				  CssClass="@(LayoutFieldAttribute.ColSpan > 0 ? $"col-xxl-{LayoutFieldAttribute.ColSpan}" : string.Empty)">
+				  BeginRow="@BeginRow"
+				  CssClass="@(Colspan > 0 ? $"col-xxl-{Colspan}" : string.Empty)">
 	<Template>
 		<div class="d-flex">
 			<div class="me-1 flex-grow-1 flex-shrink-1">
@@ -37,10 +37,18 @@
 
 	[Parameter]
 	public EventCallback<object> FieldChanged { get; set; }
+	[Parameter]
+	public bool BeginRow { get; set; }
+	[Parameter]
+	public int Colspan { get; set; }
+	[Parameter]
+	public string AttributeField { get; set; }
+	[Parameter]
+	public string description { get; set; }
 
 	private string Caption
 	{
-		get => MetaColumnAttributes.Description != null ? L[MetaColumnAttributes.Description] : LayoutFieldAttribute.Field;
+		get => description != null ? L[description] : AttributeField;
 	}
 
 	private string sEnumCaption 

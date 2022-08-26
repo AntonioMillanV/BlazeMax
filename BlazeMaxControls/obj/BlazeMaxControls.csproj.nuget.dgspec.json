@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\BlazeMaxControls.csproj": {}
+    "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\BlazeMaxControls.csproj": {}
   },
   "projects": {
     "C:\\Frog\\Blazor\\veXMAX.Data.Interface\\veXMAX.Data.Interface.csproj": {
@@ -15,11 +15,13 @@
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
         ],
         "configFilePaths": [
           "C:\\Users\\Frog\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\RemObjects.Software.config"
         ],
@@ -32,7 +34,9 @@
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\RemObjects Software\\Packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -139,11 +143,13 @@
         "outputPath": "C:\\Frog\\Blazor\\veXMAX.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
         ],
         "configFilePaths": [
           "C:\\Users\\Frog\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\RemObjects.Software.config"
         ],
@@ -154,7 +160,9 @@
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\RemObjects Software\\Packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -162,6 +170,12 @@
             "projectReferences": {
               "C:\\Frog\\Blazor\\veXMAX.Lib\\veXMAX.Lib.csproj": {
                 "projectPath": "C:\\Frog\\Blazor\\veXMAX.Lib\\veXMAX.Lib.csproj"
+              },
+              "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj": {
+                "projectPath": "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj"
+              },
+              "C:\\Frog\\Blazor\\veXMAX.Shared\\veXMAX.Shared.csproj": {
+                "projectPath": "C:\\Frog\\Blazor\\veXMAX.Shared\\veXMAX.Shared.csproj"
               }
             }
           }
@@ -219,11 +233,13 @@
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
         ],
         "configFilePaths": [
           "C:\\Users\\Frog\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\RemObjects.Software.config"
         ],
@@ -236,12 +252,17 @@
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\RemObjects Software\\Packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj": {
+                "projectPath": "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj"
+              },
               "C:\\Frog\\Blazor\\veXMAX.Shared\\veXMAX.Shared.csproj": {
                 "projectPath": "C:\\Frog\\Blazor\\veXMAX.Shared\\veXMAX.Shared.csproj"
               }
@@ -250,6 +271,9 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
+              "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj": {
+                "projectPath": "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj"
+              },
               "C:\\Frog\\Blazor\\veXMAX.Shared\\veXMAX.Shared.csproj": {
                 "projectPath": "C:\\Frog\\Blazor\\veXMAX.Shared\\veXMAX.Shared.csproj"
               }
@@ -258,6 +282,9 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
+              "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj": {
+                "projectPath": "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj"
+              },
               "C:\\Frog\\Blazor\\veXMAX.Shared\\veXMAX.Shared.csproj": {
                 "projectPath": "C:\\Frog\\Blazor\\veXMAX.Shared\\veXMAX.Shared.csproj"
               }
@@ -328,6 +355,123 @@
               "target": "Package",
               "version": "[9.5.0.88, )"
             },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj",
+        "projectName": "veXMAX.Resources",
+        "projectPath": "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj",
+        "packagesPath": "C:\\Users\\Frog\\.nuget\\packages\\",
+        "outputPath": "C:\\Frog\\Blazor\\veXMAX.Resources\\obj\\",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Frog\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\RemObjects.Software.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0",
+          "net6.0-windows",
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\RemObjects Software\\Packages": {},
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          },
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {}
+          },
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        },
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        },
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
@@ -360,11 +504,13 @@
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
         ],
         "configFilePaths": [
           "C:\\Users\\Frog\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\RemObjects.Software.config"
         ],
@@ -377,20 +523,34 @@
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\RemObjects Software\\Packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj": {
+                "projectPath": "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj"
+              }
+            }
           },
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj": {
+                "projectPath": "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj"
+              }
+            }
           },
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj": {
+                "projectPath": "C:\\Frog\\Blazor\\veXMAX.Resources\\veXMAX.Resources.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -502,21 +662,23 @@
         }
       }
     },
-    "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\BlazeMaxControls.csproj": {
+    "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\BlazeMaxControls.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\BlazeMaxControls.csproj",
+        "projectUniqueName": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\BlazeMaxControls.csproj",
         "projectName": "BlazeMaxControls",
-        "projectPath": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\BlazeMaxControls.csproj",
+        "projectPath": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\BlazeMaxControls.csproj",
         "packagesPath": "C:\\Users\\Frog\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\obj\\",
+        "outputPath": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
         ],
         "configFilePaths": [
           "C:\\Users\\Frog\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\RemObjects.Software.config"
         ],
@@ -527,7 +689,9 @@
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\RemObjects Software\\Packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {

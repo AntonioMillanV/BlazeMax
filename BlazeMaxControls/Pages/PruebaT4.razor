@@ -1,0 +1,23 @@
+﻿@page "/pruebaT4"
+@using BlazeMaxControls.Pages
+@using System.Xml
+
+<h3>PruebaT4</h3>
+@*<GenericTemplate4/> *@
+<Blazor_ComponentR/>
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        ERCAJ_BANCO_T4 banco = new ERCAJ_BANCO_T4();
+        String pageContent = banco.TransformText();
+        System.IO.File.WriteAllText(@"C:\Users\Frog\source\repos\UsoT4\BlazeMaxControls\Pages\Blazor_ComponentR.razor", pageContent);
+
+        //GenericT4 Generic = new GenericT4();
+        //String GenericPath = Generic.TransformText();
+        //System.IO.File.WriteAllText(@"C:\Users\Frog\source\repos\UsoT4\BlazeMaxControls\Pages\GenericTemplate4.razor", GenericPath);
+
+	}
+}

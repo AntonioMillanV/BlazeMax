@@ -1,0 +1,40 @@
+
+
+@using BlazeMaxControls.Components.VXComponents.TransactionVersion
+@using DevExpress.Blazor
+@using BlazeMaxControls.Helpers
+@using veXMAX.Shared.Models
+@using BlazeMaxControls.Components.VXComponents
+@inject BlazeMaxControls.Services.TransactionService TService
+@using veXMAX.Shared.Models.Transactions;
+@using veXMAX.Shared;
+
+<VxTransactionFormCreator  TransactionType="ERCAJ_BANCO" />
+@code{
+		ERCAJ_BANCO _ERCAJ_BANCO { get; set; }
+	List<VXLayOutFieldAttribute> _LayoutL = new List<VXLayOutFieldAttribute>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		//Contrucción de los data grid
+		var Lay = new LayoutItem().OrganizeLayoutLeafContent();
+		TemplateHelper Template = new TemplateHelper();
+
+		foreach (var item in Lay)
+		{
+			foreach (var group in item.GroupContent)
+			{
+				Template.BuildItem(group);
+				if (group.LeafContent.Any())
+				{
+					if (Template.MasterAccessor.Target.GetType().Name != group.LeafContent[0].Primitive)
+					{
+								_LayoutL = (group.LeafContent);
+					}
+				}
+			}
+		}
+		_ERCAJ_BANCO = await TService.First<ERCAJ_BANCO>(_ERCAJ_BANCO);
+		await base.OnInitializedAsync();
+	}
+}

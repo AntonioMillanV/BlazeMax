@@ -1,0 +1,122 @@
+@using BlazeMaxControls.Components.VXComponents.TransactionVersion
+@using DevExpress.Blazor
+@using BlazeMaxControls.Helpers
+@using veXMAX.Shared.Models
+@using BlazeMaxControls.Components.VXComponents
+@using Newtonsoft.Json
+@using veXMAX.Shared.Models.Transactions;
+@using veXMAX.Shared;
+@using veXMAX.Resources
+@inject IStringLocalizer<VXModelLabels> L
+@inject BlazeMaxControls.Services.TransactionService TService
+
+<VxToolbarNav TTrans="ERCAJ_BANCO" @bind-Model="_ERCAJ_BANCO"  />
+<DxFormLayout>
+
+
+	<DxFormLayoutGroup Caption="Tabulador" ColSpanLg="12" BeginRow=false>
+
+		<DxFormLayoutTabPages Caption="Tabulador" ColSpanXl="12">
+						<DxFormLayoutTabPage Caption="Transacción" ColSpanLg="12">
+
+				<DxFormLayoutGroup Caption="Tabulador" ColSpanLg="6" BeginRow=false>
+
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.SYSUDN_CODIGO_K" Caption=@L["CAJ_BANCO_SYSUDN_CODIGO_K"] BeginRow=false ColSpanMd=6>
+												<DxTextBox @bind-Text="_ERCAJ_BANCO.CAJ_BANCO.SYSUDN_CODIGO_K" />
+										</DxFormLayoutItem>
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_FECHA" Caption=@L["CAJ_BANCO_CAJBAN_FECHA"] BeginRow=false ColSpanMd=6>
+												<DxDateEdit @bind-Date="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_FECHA" />
+										</DxFormLayoutItem>
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.SYSTRA_CODIGO_K" Caption=@L["CAJ_BANCO_SYSTRA_CODIGO_K"] BeginRow=false ColSpanMd=12>
+												<DxTextBox @bind-Text="_ERCAJ_BANCO.CAJ_BANCO.SYSTRA_CODIGO_K" />
+										</DxFormLayoutItem>
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.SYSTTP_CODIGO_K" Caption=@L["CAJ_BANCO_SYSTTP_CODIGO_K"] BeginRow=false ColSpanMd=12>
+												<DxTextBox @bind-Text="_ERCAJ_BANCO.CAJ_BANCO.SYSTTP_CODIGO_K" />
+										</DxFormLayoutItem>
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.SYSTTS_CODIGO_K" Caption=@L["CAJ_BANCO_SYSTTS_CODIGO_K"] BeginRow=false ColSpanMd=12>
+												<DxTextBox @bind-Text="_ERCAJ_BANCO.CAJ_BANCO.SYSTTS_CODIGO_K" />
+										</DxFormLayoutItem>
+										<VXFormComponent2 Field=_ERCAJ_BANCO.CAJ_BANCO.CONPER_CODIGO_K FieldAttrib=_ERCAJ_BANCO.CAJ_BANCO.CONPER_CODIGO_K _control="LookUpEdit" description="CAJ_BANCO_CONPER_CODIGO_K" AttributeField="CONPER_CODIGO_K" BeginRow=false Colspan=12 LookUpPrimitive="CON_PERIODO" TFields="Int16" Model="@_ERCAJ_BANCO.CAJ_BANCO"  />
+										<VXFormComponent2 Field=_ERCAJ_BANCO.CAJ_BANCO.CFGCAJ_CODIGO_K FieldAttrib=_ERCAJ_BANCO.CAJ_BANCO.CFGCAJ_CODIGO_K _control="LookUpEdit" description="CAJ_BANCO_CFGCAJ_CODIGO_K" AttributeField="CFGCAJ_CODIGO_K" BeginRow=false Colspan=12 LookUpPrimitive="CFG_CAJA" TFields="String" Model="@_ERCAJ_BANCO.CAJ_BANCO"  />
+										<VXFormComponent2 Field=_ERCAJ_BANCO.CAJ_BANCO.CFGMON_CODIGO_K FieldAttrib=_ERCAJ_BANCO.CAJ_BANCO.CFGMON_CODIGO_K _control="LookUpEdit" description="CAJ_BANCO_CFGMON_CODIGO_K" AttributeField="CFGMON_CODIGO_K" BeginRow=false Colspan=12 LookUpPrimitive="CFG_MONEDA" TFields="String" Model="@_ERCAJ_BANCO.CAJ_BANCO"  />
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_TIPOCAMBIO" Caption=@L["CAJ_BANCO_CAJBAN_TIPOCAMBIO"] BeginRow=false ColSpanMd=6>
+												<DxSpinEdit @bind-Value="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_TIPOCAMBIO" />
+										</DxFormLayoutItem>
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_VALOR_MI" Caption=@L["CAJ_BANCO_CAJBAN_VALOR_MI"] BeginRow=false ColSpanMd=6>
+												<DxSpinEdit @bind-Value="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_VALOR_MI" />
+										</DxFormLayoutItem>
+										<VXFormComponent2 Field=_ERCAJ_BANCO.CAJ_BANCO.CFGBAN_CODIGO_K FieldAttrib=_ERCAJ_BANCO.CAJ_BANCO.CFGBAN_CODIGO_K _control="LookUpEdit" description="CAJ_BANCO_CFGBAN_CODIGO_K" AttributeField="CFGBAN_CODIGO_K" BeginRow=false Colspan=12 LookUpPrimitive="CFG_BANCO" TFields="String" Model="@_ERCAJ_BANCO.CAJ_BANCO"  />
+										<VXFormComponent2 Field=_ERCAJ_BANCO.CAJ_BANCO.CFGCTA_CODIGO_K FieldAttrib=_ERCAJ_BANCO.CAJ_BANCO.CFGCTA_CODIGO_K _control="LookUpEdit" description="CAJ_BANCO_CFGCTA_CODIGO_K" AttributeField="CFGCTA_CODIGO_K" BeginRow=false Colspan=12 LookUpPrimitive="CFG_BANCOCTA" TFields="String" Model="@_ERCAJ_BANCO.CAJ_BANCO"  />
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_BANCOREF" Caption=@L["CAJ_BANCO_CAJBAN_BANCOREF"] BeginRow=false ColSpanMd=6>
+												<DxTextBox @bind-Text="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_BANCOREF" />
+										</DxFormLayoutItem>
+										<DxFormLayoutItem Caption=@L["CAJ_BANCO_CAJBAN_OBSERVACION"] BeginRow=false ColSpanMd=12 CssClass="@(12 > 0 ? $"col-xxl-12" : string.Empty)">
+												<DxMemo @bind-Text="@_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_OBSERVACION" Rows="5" ResizeMode="MemoResizeMode.Vertical"  />
+										</DxFormLayoutItem>
+								</DxFormLayoutGroup>
+				<DxFormLayoutGroup Caption="Datos" ColSpanLg="6" BeginRow=false>
+
+										<VXFormComponent2 Field=_ERCAJ_BANCO.CAJ_BANCO.S_MAQEDO FieldAttrib=_ERCAJ_BANCO.CAJ_BANCO.S_MAQEDO _control="ComboEnumEdit" description="CAJ_BANCO_S_MAQEDO" AttributeField="S_MAQEDO" BeginRow=false Colspan=12 />
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_SERIE_K" Caption=@L["CAJ_BANCO_CAJBAN_SERIE_K"] BeginRow=false ColSpanMd=5>
+												<DxTextBox @bind-Text="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_SERIE_K" />
+										</DxFormLayoutItem>
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_FOLIO_K" Caption=@L["CAJ_BANCO_CAJBAN_FOLIO_K"] BeginRow=false ColSpanMd=7>
+												<DxSpinEdit @bind-Value="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_FOLIO_K" />
+										</DxFormLayoutItem>
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_REFERENCIA" Caption=@L["CAJ_BANCO_CAJBAN_REFERENCIA"] BeginRow=false ColSpanMd=12>
+												<DxTextBox @bind-Text="_ERCAJ_BANCO.CAJ_BANCO.CAJBAN_REFERENCIA" />
+										</DxFormLayoutItem>
+										<DxFormLayoutItem Field="_ERCAJ_BANCO.CAJ_BANCO.CONPOL_REFERENCIA" Caption=@L["CAJ_BANCO_CONPOL_REFERENCIA"] BeginRow=false ColSpanMd=12>
+												<DxTextBox @bind-Text="_ERCAJ_BANCO.CAJ_BANCO.CONPOL_REFERENCIA" />
+										</DxFormLayoutItem>
+								</DxFormLayoutGroup>
+						</DxFormLayoutTabPage>
+				</DxFormLayoutTabPages>
+		</DxFormLayoutGroup>
+	<DxFormLayoutGroup Caption="Billetes y Monedas" ColSpanLg="12" BeginRow=false>
+
+				<VxSlaveGridCreator2 Data="@_ERCAJ_BANCO.CAJ_BANCOBIL" FieldAttributes="@_LayoutL"  />
+		</DxFormLayoutGroup>
+
+</DxFormLayout>
+
+<h4>Detalles de la Transaccion</h4>
+<pre>
+<code>
+		@(JsonConvert.SerializeObject(_ERCAJ_BANCO, Formatting.Indented))
+	</code>
+</pre>
+
+@code  {
+	ERCAJ_BANCO _ERCAJ_BANCO { get; set; }
+	List<VXLayOutFieldAttribute> _LayoutL = new List<VXLayOutFieldAttribute>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		//Contrucción de los data grid
+		var Lay = new LayoutItem().OrganizeLayoutLeafContent();
+		TemplateHelper Template = new TemplateHelper();
+
+		foreach (var item in Lay)
+		{
+			foreach (var group in item.GroupContent)
+			{
+				Template.BuildItem(group);
+				if (group.LeafContent.Any())
+				{
+					if (Template.MasterAccessor.Target.GetType().Name != group.LeafContent[0].Primitive)
+					{
+						_LayoutL = (group.LeafContent);
+					}
+				}
+			}
+		}
+		_ERCAJ_BANCO = new ERCAJ_BANCO();
+		_ERCAJ_BANCO = await TService.First<ERCAJ_BANCO>(_ERCAJ_BANCO);
+		await base.OnInitializedAsync();
+	}
+	private List<ComboEnumWrapper> EnumOptionsList(string Field)
+	{
+		return Enum.GetValues(Field.GetType()).OfType<Enum>().Select(t => new ComboEnumWrapper { Type = t, DisplayText = t.ToSafeString() }).ToList();
+	}
+}

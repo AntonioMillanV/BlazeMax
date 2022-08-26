@@ -96,36 +96,36 @@
 		Prior = false;
 		Next = true;
 
-		Model = await TService.First<TTrans>();
+		Model = await TService.First<TTrans>(Model);
 		await ModelChanged.InvokeAsync(Model);
 	}
 	private async Task OnAnteriorClick()
 	{
-		var DataRet = await TService.Prior<TTrans>(Id);
+		var DataRet = await TService.Prior<TTrans>(Model);
 		SetData(DataRet);
 		Prior = true;
 		Next = true;
 
-		Model = await TService.Prior<TTrans>(Id);
+		Model = await TService.Prior<TTrans>(Model);
 		await ModelChanged.InvokeAsync(Model);
 	}
 	private async Task OnSiguienteClick()
 	{
-		var DataRet = await TService.Next<TTrans>(Id);
+		var DataRet = await TService.Next<TTrans>(Model);
 		SetData(DataRet);
 		Prior = true;
 		Next = true;
 
-		Model = await TService.Next<TTrans>(Id);
+		Model = await TService.Next<TTrans>(Model);
 		await ModelChanged.InvokeAsync(Model);
 	}
 	private async Task OnUltimoClick()
 	{
-		var DataRet = await TService.Last<TTrans>();
+		var DataRet = await TService.Last<TTrans>(Model);
 		SetData(DataRet);
 		Prior = true;
 		Next = false;
-		Model = await TService.Last<TTrans>();
+		Model = await TService.Last<TTrans>(Model);
 		await ModelChanged.InvokeAsync(Model);
 	}
 	private void OnRefrescarClick()

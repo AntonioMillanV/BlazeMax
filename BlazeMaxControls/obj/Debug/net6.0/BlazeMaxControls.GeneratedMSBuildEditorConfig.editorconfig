@@ -8,101 +8,129 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BlazeMaxControls
 build_property.RootNamespace = BlazeMaxControls
-build_property.ProjectDir = C:\Users\Frog\source\repos\BlazeMaxControls\BlazeMaxControls\
+build_property.ProjectDir = C:\Users\Frog\source\repos\UsoT4\BlazeMaxControls\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Users\Frog\source\repos\BlazeMaxControls\BlazeMaxControls
+build_property.MSBuildProjectDirectory = C:\Users\Frog\source\repos\UsoT4\BlazeMaxControls
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/App.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VXComponents/FormComponents/VxDateEdit.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/FormComponents/VxDateEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcRm9ybUNvbXBvbmVudHNcVnhEYXRlRWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VXComponents/FormComponents/VxSpinEdit.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/FormComponents/VxSpinEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcRm9ybUNvbXBvbmVudHNcVnhTcGluRWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VXComponents/FormComponents/VxTextBox.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/FormComponents/VxTextBox.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcRm9ybUNvbXBvbmVudHNcVnhUZXh0Qm94LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VXComponents/TransactionVersion/VxMasterFormCreator.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/TransactionVersion/VxMasterFormCreator.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcVHJhbnNhY3Rpb25WZXJzaW9uXFZ4TWFzdGVyRm9ybUNyZWF0b3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VXComponents/TransactionVersion/VxSlaveGridCreator.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/TransactionVersion/VxSlaveGridCreator.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcVHJhbnNhY3Rpb25WZXJzaW9uXFZ4U2xhdmVHcmlkQ3JlYXRvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VXComponents/VxComboEnum.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/TransactionVersion/VxSlaveGridCreator2.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcVHJhbnNhY3Rpb25WZXJzaW9uXFZ4U2xhdmVHcmlkQ3JlYXRvcjIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/VxComboEnum.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcVnhDb21ib0VudW0ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VXComponents/VXFormComponent.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/VXFormComponent.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcVlhGb3JtQ29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VXComponents/VxLookupEdit.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/VXFormComponent2.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcVlhGb3JtQ29tcG9uZW50Mi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/VxLookupEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcVnhMb29rdXBFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VXComponents/VxLookupEditDialog.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/VxLookupEdit2.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcVnhMb29rdXBFZGl0Mi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/VxLookupEditDialog.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcVnhMb29rdXBFZGl0RGlhbG9nLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VXComponents/VxMemoEdit.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VXComponents/VxMemoEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWWENvbXBvbmVudHNcVnhNZW1vRWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VxToolbarNav.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VxToolbarNav.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWeFRvb2xiYXJOYXYucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Components/VxTransactionFormCreator.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VxTransactionFormCreator.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWeFRyYW5zYWN0aW9uRm9ybUNyZWF0b3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Pages/DataGrid.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Components/VxTransactionFormCreator2.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWeFRyYW5zYWN0aW9uRm9ybUNyZWF0b3IyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Pages/Blazor_ComponentR.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmxhem9yX0NvbXBvbmVudFIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Pages/DataGrid.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YUdyaWQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Pages/Index.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Pages/GenericTemplate4.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VuZXJpY1RlbXBsYXRlNC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Pages/Reports.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Pages/PruebaT4.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJ1ZWJhVDQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Pages/Reports.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Shared/BrowserNotSupported.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Shared/BrowserNotSupported.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEJyb3dzZXJOb3RTdXBwb3J0ZWQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/_Imports.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Shared/Header.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Shared/Header.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEhlYWRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-a9pfudx3qs
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Shared/MainLayout.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-j4h4ierrwr
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Shared/NavMenu.razor]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-kuqaogbnq5
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Pages/Error.cshtml]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Frog/source/repos/BlazeMaxControls/BlazeMaxControls/Pages/_Host.cshtml]
+[C:/Users/Frog/source/repos/UsoT4/BlazeMaxControls/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

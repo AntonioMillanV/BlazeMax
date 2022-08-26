@@ -2,36 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Designers\FormDesigner.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Controls\VXControlComboEnum.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Controls\VXControlGridEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Controls\VXControlLookUp.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Controls\VXControlLookUpDialog.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Custom\FormPruebas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Generics\FormTransactionGeneric.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Generics\ListGeneric.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Generics\ListPrimitiveGeneric.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Forms\Generics\ListTransactionGeneric.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="MainView.cs">
       <SubType>Form</SubType>
     </Compile>

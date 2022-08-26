@@ -1,0 +1,251 @@
+﻿@using BlazeMaxControls.Helpers
+@using veXMAX.Resources
+@using BlazeMaxControls.Services
+@using System.Reflection
+@using System.Threading
+@using System.Collections
+@using System.Linq.Expressions
+
+@implements IVXComponent
+
+@typeparam TLookup where TLookup : VXModelPrimitive, new()
+@typeparam type
+
+@inject IStringLocalizer<VXModelLabels> L
+@inject LookUpService lookupService
+<DxFormLayoutItem Caption="@Caption"
+				  ColSpanMd="12"
+				  BeginRow="@BeginRow"
+				  CssClass="@(Colspan > 0 ? $"col-xxl-{Colspan}" : string.Empty)">
+	<Template>
+		<div class="d-flex">
+			<div class="me-1 flex-grow-1 flex-shrink-1">
+				<DxComboBox TData="TLookup" TValue="object"
+							Value="@Field"
+							ValueChanged="@(async value => await HandleValueChange(value))"
+							DataAsync="@GetDataAsync"
+							AllowUserInput="@true"
+							TextFieldName="@lookupConfig[0].KeyField"
+							ValueFieldName="@lookupConfig[0].KeyField"
+							ListRenderMode="@ListRenderMode.Entire"
+							FilteringMode="DataGridFilteringMode.StartsWith"
+							InputId="ComboInput" 
+							@ref="@VxCombo"
+				>
+					@{
+						var LookupMembers = from Member in typeof(TLookup).GetMembers()
+											join SelectMember in lookupConfig[0].Select.Split(",").ToList()
+											on Member.Name equals SelectMember
+											select Member;
+
+						bool first = true;
+						foreach (MemberInfo member in LookupMembers)
+						{
+							VXMetaColumnAttributes meta = (VXMetaColumnAttributes)member.GetCustomAttribute(typeof(VXMetaColumnAttributes));
+							if (meta == null || meta.ListVisibility != VXColumnListVisibility.Visible)
+								continue;
+							else
+							{
+								if (first)
+								{
+									<DxListEditorColumn FieldName="@member.Name"
+										Caption="@(meta.Description != string.Empty ? L[meta.Description] : member.Name)"
+										Width="100px" />
+									first = !first;
+								}
+								else
+								{
+									<DxListEditorColumn FieldName="@member.Name"
+										Caption="@(meta.Description != string.Empty ? L[meta.Description] : member.Name)" />
+								}
+							}
+						}
+					}
+				</DxComboBox>
+			</div>
+			<div class="ms-1 flex-grow-1 flex-shrink-1">
+				<DxTextBox @bind-Text="@sLookupCaption" ReadOnly="true" />
+			</div>
+			
+		</div>
+	</Template>
+</DxFormLayoutItem>
+
+
+@code {
+	[Parameter]
+	public object Field { get; set; }
+
+	//[Parameter]
+	//public VXLayOutFieldAttribute LayoutFieldAttribute { get; set; }
+
+	//[Parameter]
+	//public VXMetaColumnAttributes MetaColumnAttributes { get; set; }
+	[Parameter]
+	public bool BeginRow { get; set; }
+	[Parameter]
+	public int Colspan { get; set; }
+	[Parameter]
+	public EventCallback<string> FieldChanged { get; set; }
+
+	[Parameter]
+	public object Model { get; set; }
+	[Parameter]
+	public string description { get; set; }
+
+	[Parameter]
+	public EventCallback<object> ModelChanged { get; set; }
+
+	private DxComboBox<TLookup, object> VxCombo { get; set; }
+
+	private List<TLookup> DataList { get; set; }
+
+	private string Caption
+	{
+		get => description != null ? L[description] : Field.ToString();
+	}
+
+	private string sLookupCaption {
+		get => ApiResult != null ? SetDescriptionString(ApiResult) : string.Empty;
+		set { }
+	}
+
+	private TLookup ApiResult { get; set; }
+
+	private List<VXLookUpConfigAttribute> lookupConfig
+	{
+		get
+		{
+			return typeof(TLookup).GetCustomAttributes(typeof(VXLookUpConfigAttribute), false).Cast<VXLookUpConfigAttribute>().ToList();
+		}
+	}
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+	}
+
+	private async Task<IEnumerable<TLookup>> GetDataAsync(CancellationToken ct = default)
+	{
+		DataList = await lookupService.GetFull<TLookup>(lookupConfig[0].Filter, lookupConfig[0].OrderBy, 80000, 0, lookupConfig[0].Select);		//DataList = await lookupService.GetFull<TLookup>(lookupConfig[0].Filter, lookupConfig[0].OrderBy, 80000, 0, lookupConfig[0].Select);
+		return DataList;
+	}
+
+	async Task HandleValueChange(object newValue)
+	//async Task HandleValueChange(ChangeEventArgs value)
+	{
+		//var newValue = (TField)value.Value;
+		if(newValue == null)
+		{
+			return;
+		}
+
+		TLookup ModelLookup = new TLookup();
+
+		var accessor = TypeAccessor.Create(Model.GetType());
+
+		var Keys = ModelLookup?.Keys();
+		if (Keys.Count > 1)
+		{
+			foreach (string key in ModelLookup.Keys())
+			{
+				foreach (var member in accessor.GetMembers())
+				{
+					if (member.Name == key)
+					{
+						ModelLookup.SetValue(key, accessor[Model, key]);
+						break;
+					}
+				}
+			}
+		}
+		//else
+		//{ 
+		ModelLookup.SetValue(lookupConfig[0].KeyField, newValue); 
+		//}
+
+		//var ApiResult = await lookupService.Get<TLookup>(ModelLookUp.Key);
+		ModelLookup = await lookupService.Get<TLookup>(ModelLookup.Key);
+
+		if (ModelLookup != null)
+		{
+			this.ApiResult = ModelLookup;
+			SetDescriptionString(ModelLookup);
+		}
+
+		Field = Convert.ToString(newValue);
+		await FieldChanged.InvokeAsync(Field.ToString());
+		VxCombo.Value = Field;
+		StateHasChanged();
+	}
+
+	private string SetDescriptionString(TLookup value)
+	{
+		string sResult = string.Empty;
+		//await Task.Run(() =>
+		//{
+		if (value != null)
+		{
+			var Lacc = ObjectAccessor.Create(value);
+			sResult = Lacc[lookupConfig[0].DescriptionField].ToSafeString();
+		}
+		else
+		{
+			sResult = string.Empty;
+		}
+		//});
+		return sResult;
+	}
+
+	private string ReplaceParameters(string sFiltro)
+	{
+		string[] sTokens = sFiltro.Split(' ');
+
+		string sNewFilter = string.Empty;
+		var accessor = ObjectAccessor.Create(Model);
+
+		foreach (string sToken in sTokens)
+		{
+			string sValue = sToken;
+			if (sValue.StartsWith("@"))
+			{
+				sValue = GetValueFromModel(sValue);
+			}
+
+			if (!sNewFilter.IsDBNullOrStringEmpty())
+				sNewFilter += " ";
+			sNewFilter += sValue;
+		}
+
+		return sNewFilter;
+	}
+
+	private string GetValueFromModel(string sParameter)
+	{
+		//object oModel = (object)Model;
+		//var ModelDic = VXModelTransactionHelper.GetPrimitives(Model.GetType(), oModel);
+		string sField = sParameter.Substring(1).Trim();
+
+        //foreach (KeyValuePair<string, object> item in ModelDic)
+        //{
+            var accessor = TypeAccessor.Create(Model.GetType());
+
+            foreach (var member in accessor.GetMembers())
+            {
+                if (member.Name == sField)
+                {
+                    Type tField = accessor[Model, sField].GetType();
+
+                    if ((tField == typeof(DateTime)) ||
+                        (tField == typeof(string)))
+                        return string.Format("'{0}'", accessor[Model, sField].ToSafeString());
+                    else
+                        return accessor[Model, sField].ToSafeString();
+
+                }
+            }
+        //}
+
+        throw new Exception(string.Format("Parámetro {0} no existe en {1}", sParameter, Field));
+    }
+}

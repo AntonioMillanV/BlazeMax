@@ -1,8 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Pages\ERCAJ_BANCO_T4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ERCAJ_BANCO_T4.tt</DependentUpon>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DevExpress.Blazor" Version="21.2.3" />
     <PackageReference Include="DevExpress.Blazor.es" Version="21.2.3" />
@@ -15,6 +22,13 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Pages\GenericT4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenericT4.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\..\Frog\Blazor\veXMAX.Data.Interface\veXMAX.Data.Interface.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\Frog\Blazor\veXMAX.Data\veXMAX.Data.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\Frog\Blazor\veXMAX.Lib\veXMAX.Lib.csproj" />
@@ -24,5 +38,39 @@
     <Reference Include="veXMAX.Resources">
       <HintPath>..\..\..\..\..\..\Frog\Blazor\veXMAX.Resources\bin\Debug\net6.0\veXMAX.Resources.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Pages\ERCAJ_BANCO_T4.tt">
+      <Generator>TextTemplatingFilePreProcessor</Generator>
+      <LastGenOutput>ERCAJ_BANCO_T4.cs</LastGenOutput>
+    </None>
+    <None Update="Pages\GenericT4.tt">
+      <Generator>TextTemplatingFilePreProcessor</Generator>
+      <LastGenOutput>GenericT4.cs</LastGenOutput>
+    </None>
+    <None Update="Pages\TextTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TextTemplate.txt</LastGenOutput>
+    </None>
+    <None Update="Pages\TextTemplate.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TextTemplate.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pages\ERCAJ_BANCO_T4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ERCAJ_BANCO_T4.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\GenericT4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenericT4.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

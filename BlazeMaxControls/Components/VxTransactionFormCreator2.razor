@@ -1,0 +1,161 @@
+﻿@*@inject BlazeMaxControls.Services.TransactionService TService
+@inject IStringLocalizer<VXModelLabels> L
+
+@using Microsoft.AspNetCore.Components.Rendering
+@using Newtonsoft.Json
+@using System.ComponentModel.DataAnnotations.Schema
+@using BlazeMaxControls.Helpers
+@using veXMAX.Resources
+@using BlazeMaxControls.Components.VXComponents
+@using BlazeMaxControls.Components.VXComponents.TransactionVersion
+
+@typeparam TransactionType where TransactionType : new()
+
+@RenderLayout(_Layout)
+
+@code {
+	[Parameter]
+	public LayoutItem Item { get; set; }
+	public ERCAJ_BANCO Model { get; set; } = new ERCAJ_BANCO();
+
+	//private List<VXLayOutGroupAttribute> VXGroups
+	//{
+	//	get => typeof(TransactionType).GetCustomAttributes(typeof(VXLayOutGroupAttribute), false).Cast<VXLayOutGroupAttribute>().ToList();
+	//}
+	//private List<VXLayOutFieldAttribute> VXFields
+	//{
+	//	get => typeof(TransactionType).GetCustomAttributes(typeof(VXLayOutFieldAttribute), false).Cast<VXLayOutFieldAttribute>().ToList();
+	//}
+
+	//private Dictionary<string, Type> MasterDic;
+
+	//private EditContext editContext;
+	LayoutItem _Layout; 
+	private Type MasterType { get; set; }
+
+	private TypeAccessor TransAccessor;
+	private ObjectAccessor MasterAccessor;
+
+
+
+	protected override Task OnInitializedAsync()
+	{
+		//_Layout = OrganizeLayout(VXGroups);
+
+		//Model = Activator.CreateInstance<TransactionType>();
+
+		TransAccessor = TypeAccessor.Create(typeof(ERCAJ_BANCO));
+
+		foreach (Member TMember in TransAccessor.GetMembers())
+		{
+			if (TMember.GetAttribute(typeof(NotMappedAttribute), false) != null)
+				continue;
+
+			if (TMember.GetAttribute(typeof(VXTransactionMasterAttribute), false) != null)
+				MasterAccessor = ObjectAccessor.Create(TransAccessor[Model, TMember.Name]);
+		}
+		// LayoutItem Item = new LayoutItem().OrganizeLayout();
+		BuildItem(Item);
+		return base.OnInitializedAsync();
+	}
+
+
+	private RenderFragment RenderLayout(LayoutItem layout) => __builder =>
+	{
+		//<EditForm Model="@TransAccessor[Model, MasterAccessor.Target.GetType().Name]">
+		//	<DataAnnotationsValidator />
+		<DxFormLayout ChildContent="@BuildItem(layout, true)" />
+		//	<ValidationSummary />
+		//</EditForm>
+	};
+
+	private RenderFragment BuildItem(LayoutItem Item, bool FirstIteration = false) => __builder =>
+	{
+		if (Item.LeafContent.Any())
+		{
+			//if (MasterAccessor.Target.GetType().Name == Item.LeafContent[0].Primitive)
+			//{
+			//	<VxMasterFormCreator Data="@((VXModelPrimitive)TransAccessor[Model, Item.LeafContent[0].Primitive])" FieldAttributes="@Item.LeafContent" />
+			//}
+			//else
+			//{
+			//	<VxSlaveGridCreator Data="@((TransAccessor[Model, Item.LeafContent[0].Primitive]))" FieldAttributes="@Item.LeafContent" />
+			//}
+			foreach (var item in Item.LeafContent)
+				{
+
+					//Componente 
+					//component += $"\r\n<DxLabel>{item.Field}</DxLabel>";
+					//Definición de controles
+					if (MasterAccessor.Target.GetType().Name == Item.LeafContent[0].Primitive)
+					{
+						VXMetaColumnAttributes MetaAttr = (VXMetaColumnAttributes)Attribute.GetCustomAttribute(MasterAccessor.Target.GetType().GetProperty(item.Field), typeof(VXMetaColumnAttributes));
+						string Var = Convert.ToString(Model.GetType().Name + "." + MasterAccessor.Target.GetType().Name + "." + item.Field);
+						<VXFormComponent2 @bind-Field="@Var" MetaColumnAttributes="@MetaAttr" LayoutFieldAttribute="@item" />
+					}
+					else
+					{
+						<div>{item.Field}</div>
+					}
+				}
+		}
+		if (Item.GroupContent.Any())
+		{
+			switch (Item.GroupAttribute.ContainerType)
+			{
+				case VXLayOutGroupEnum.ControlContainer:
+					foreach (LayoutItem GroupItem in Item.GroupContent)
+					{
+						<DxFormLayoutGroup Caption="@GroupItem.GroupAttribute.Description" ColSpanXl="GroupItem.GroupAttribute.ColSpan"
+										   ChildContent="BuildItem(GroupItem)" />
+					}
+					break;
+				case VXLayOutGroupEnum.GroupContainer:
+					if (Item.GroupAttribute.IsTab)
+					{
+						<DxFormLayoutTabPages Caption="@Item.GroupAttribute.Description" ColSpanXl="@Item.GroupAttribute.ColSpan"
+											  ChildContent="@BuildTabGroups(Item)" />
+					}
+					else
+					{
+						foreach (LayoutItem GroupItem in Item.GroupContent)
+						{
+							if (FirstIteration)
+							{
+								<DxFormLayoutGroup Caption="@Item.GroupAttribute.Description" ColSpanXl="GroupItem.GroupAttribute.ColSpan"
+												   ChildContent="BuildItem(GroupItem)" />
+							}
+							else
+							{
+								<DxFormLayoutGroup Caption="@GroupItem.GroupAttribute.Description" ColSpanLg="GroupItem.GroupAttribute.ColSpan"
+												   ChildContent="BuildItem(GroupItem)" />
+							}
+						}
+					}
+					break;
+				case VXLayOutGroupEnum.GridContainerInPlace:
+					break;
+				case VXLayOutGroupEnum.GridContainerEditForm:
+					break;
+				case VXLayOutGroupEnum.GridContainerFormInPlace:
+					break;
+			}
+		}
+	};
+
+	private RenderFragment BuildTabGroups(LayoutItem Item) => __builder =>
+	{
+		if (Item.GroupContent.Any())
+		{
+			foreach (LayoutItem Tab in Item.GroupContent)
+			{
+				<DxFormLayoutTabPage Caption="@Tab.GroupAttribute.Description" ColSpanLg="@Tab.GroupAttribute.ColSpan" ChildContent="@BuildItem(Tab)" />
+			}
+		}
+	};
+
+
+
+	
+
+}*@

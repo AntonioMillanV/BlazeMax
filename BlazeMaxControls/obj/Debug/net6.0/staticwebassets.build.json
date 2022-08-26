@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "x6/H9UW6b1HCALYutwmMkkShmF674TdMQHuN41po6w8=",
+  "Hash": "CtIpQV8dr38LJaGagQ9HEIm1gzioPs/JuDjw2N94ZZI=",
   "Source": "BlazeMaxControls",
   "BasePath": "_content/BlazeMaxControls",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "BlazeMaxControls\\wwwroot",
       "Source": "BlazeMaxControls",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "Pattern": "**"
     }
@@ -1921,10 +1921,10 @@
       "OriginalItemSpec": "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages\\devexpress.blazor\\21.2.3\\staticwebassets\\standalone\\dynamic-stylesheet-component-bec71215.js.map"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\bundle\\BlazeMaxControls.styles.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\bundle\\BlazeMaxControls.styles.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "BlazeMaxControls.styles.css",
       "AssetKind": "All",
@@ -1935,13 +1935,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\bundle\\BlazeMaxControls.styles.css"
+      "OriginalItemSpec": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\bundle\\BlazeMaxControls.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\BlazeMaxControls.bundle.scp.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\BlazeMaxControls.bundle.scp.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "BlazeMaxControls.bundle.scp.css",
       "AssetKind": "All",
@@ -1952,13 +1952,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\BlazeMaxControls.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\BlazeMaxControls.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\blazing_berry\\bootstrap.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\blazing_berry\\bootstrap.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/blazing_berry/bootstrap.css",
       "AssetKind": "All",
@@ -1972,10 +1972,10 @@
       "OriginalItemSpec": "wwwroot\\css\\blazing_berry\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\blazing_berry\\bootstrap.min.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\blazing_berry\\bootstrap.min.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/blazing_berry/bootstrap.min.css",
       "AssetKind": "All",
@@ -1989,10 +1989,10 @@
       "OriginalItemSpec": "wwwroot\\css\\blazing_berry\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\bootstrap\\bootstrap.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\bootstrap\\bootstrap.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/bootstrap/bootstrap.css",
       "AssetKind": "All",
@@ -2006,10 +2006,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -2023,10 +2023,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\office_white\\bootstrap.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\office_white\\bootstrap.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/office_white/bootstrap.css",
       "AssetKind": "All",
@@ -2040,10 +2040,10 @@
       "OriginalItemSpec": "wwwroot\\css\\office_white\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\office_white\\bootstrap.min.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\office_white\\bootstrap.min.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/office_white/bootstrap.min.css",
       "AssetKind": "All",
@@ -2057,10 +2057,10 @@
       "OriginalItemSpec": "wwwroot\\css\\office_white\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/open.iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -2074,10 +2074,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open.iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/open.iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -2091,10 +2091,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/open.iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -2108,10 +2108,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/open.iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -2125,10 +2125,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/open.iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -2142,10 +2142,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/open.iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -2159,10 +2159,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open.iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\FONT-LICENSE.txt",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\FONT-LICENSE.txt",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/open.iconic/FONT-LICENSE.txt",
       "AssetKind": "All",
@@ -2176,10 +2176,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open.iconic\\FONT-LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\ICON-LICENSE.txt",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\ICON-LICENSE.txt",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/open.iconic/ICON-LICENSE.txt",
       "AssetKind": "All",
@@ -2193,10 +2193,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open.iconic\\ICON-LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\README.md",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\open.iconic\\README.md",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/open.iconic/README.md",
       "AssetKind": "All",
@@ -2210,10 +2210,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open.iconic\\README.md"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\purple\\bootstrap.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\purple\\bootstrap.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/purple/bootstrap.css",
       "AssetKind": "All",
@@ -2227,10 +2227,10 @@
       "OriginalItemSpec": "wwwroot\\css\\purple\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\purple\\bootstrap.min.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\purple\\bootstrap.min.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/purple/bootstrap.min.css",
       "AssetKind": "All",
@@ -2244,10 +2244,10 @@
       "OriginalItemSpec": "wwwroot\\css\\purple\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\css\\site.css",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -2261,10 +2261,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\images\\banner.png",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\images\\banner.png",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "images/banner.png",
       "AssetKind": "All",
@@ -2278,10 +2278,10 @@
       "OriginalItemSpec": "wwwroot\\images\\banner.png"
     },
     {
-      "Identity": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\images\\sad.svg",
+      "Identity": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\images\\sad.svg",
       "SourceId": "BlazeMaxControls",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\BlazeMaxControls\\BlazeMaxControls\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Frog\\source\\repos\\UsoT4\\BlazeMaxControls\\wwwroot\\",
       "BasePath": "_content/BlazeMaxControls",
       "RelativePath": "images/sad.svg",
       "AssetKind": "All",

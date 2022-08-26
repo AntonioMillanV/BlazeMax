@@ -1,0 +1,88 @@
+﻿<#@ template debug="false" hostspecific="false" language="razor" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ Assembly Name = "System.Xml.dll" #>
+<#@ import namespace="veXMAX.Shared" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="veXMAX.Shared.Models" #>
+<#@ import namespace="BlazeMaxControls.Components" #>
+<#@ import namespace="BlazeMaxControls.Helpers" #>
+<#@ import namespace="veXMAX.Shared.Attributes" #>
+<#@ import namespace="veXMAX.Resources" #>
+<#@ import namespace="BlazeMaxControls.Components.VXComponents" #>
+<#@ output extension=".razor" #>
+
+
+@using BlazeMaxControls.Components.VXComponents.TransactionVersion
+@using DevExpress.Blazor
+@using BlazeMaxControls.Helpers
+@using veXMAX.Shared.Models
+@using BlazeMaxControls.Components.VXComponents
+@using Newtonsoft.Json
+@using veXMAX.Shared.Models.Transactions;
+@using veXMAX.Shared;
+@using veXMAX.Resources
+@inject IStringLocalizer<VXModelLabels> L
+@inject BlazeMaxControls.Services.TransactionService TService
+
+<VxToolbarNav TTrans="ERCAJ_BANCO" @bind-Model="_ERCAJ_BANCO"/>
+<DxFormLayout>
+
+<#=Template.BuildItem(Layout)#>
+
+</DxFormLayout>
+
+<h4>Detalles de la Transaccion</h4>
+<pre>
+<code>
+		@(JsonConvert.SerializeObject(_ERCAJ_BANCO, Formatting.Indented))
+	</code>
+</pre>
+
+@code{
+	ERCAJ_BANCO _ERCAJ_BANCO { get; set; }
+	List<VXLayOutFieldAttribute> _LayoutL = new List<VXLayOutFieldAttribute>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		//Contrucción de los data grid
+		var Lay = new LayoutItem().OrganizeLayoutLeafContent();
+		TemplateHelper Template = new TemplateHelper();
+
+		foreach (var item in Lay)
+		{
+			foreach (var group in item.GroupContent)
+			{
+				Template.BuildItem(group);
+				if (group.LeafContent.Any())
+				{
+					if (Template.MasterAccessor.Target.GetType().Name != group.LeafContent[0].Primitive)
+					{
+								_LayoutL = (group.LeafContent);
+					}
+				}
+			}
+		}
+		_ERCAJ_BANCO = new ERCAJ_BANCO();
+		_ERCAJ_BANCO = await TService.First<ERCAJ_BANCO>(_ERCAJ_BANCO);
+		await base.OnInitializedAsync();
+	}
+
+	private List<ComboEnumWrapper> EnumOptionsList(string Field)
+	{
+		return Enum.GetValues(Field.GetType()).OfType<Enum>().Select(t => new ComboEnumWrapper { Type = t, DisplayText = t.ToSafeString() }).ToList();
+	}
+}
+<#+
+public TemplateHelper Template = new TemplateHelper();
+public LayoutItem Layout = new LayoutItem().OrganizeLayout();
+public List<VXLayOutFieldAttribute> _LayoutL = new List<VXLayOutFieldAttribute>();
+//public var Lay = new LayoutItem().OrganizeLayoutLeafContent();
+		
+        
+//VXModelPrimitive Data = new VXModelPrimitive();
+#>

@@ -23,15 +23,15 @@
 			<div class="me-1 flex-grow-1 flex-shrink-1">
 				<DxComboBox TData="TLookup" TValue="TField"
 							Value="@Field"
+							ValueChanged="@(async value => await HandleValueChange(value))"
 							DataAsync="@GetDataAsync"
 							AllowUserInput="@true"
 							TextFieldName="@lookupConfig[0].KeyField"
 							ValueFieldName="@lookupConfig[0].KeyField"
 							ListRenderMode="@ListRenderMode.Entire"
 							FilteringMode="DataGridFilteringMode.StartsWith"
-							SelectedItemChanged="@(async value => await HandleSelectedItemChange(value))"
-							Context="ComboEditContext"
-							ValueChanged="async value => await HandleValueChange(value)"
+							InputId="ComboInput" 
+							@ref="@VxCombo"
 				>
 					@{
 						var LookupMembers = from Member in typeof(TLookup).GetMembers()
@@ -67,6 +67,7 @@
 			<div class="ms-1 flex-grow-1 flex-shrink-1">
 				<DxTextBox @bind-Text="@sLookupCaption" ReadOnly="true" />
 			</div>
+			<label>@($"El valor del campo es: {Field}")</label>
 		</div>
 	</Template>
 </DxFormLayoutItem>
@@ -85,10 +86,12 @@
 	public EventCallback<TField> FieldChanged { get; set; }
 
 	[Parameter]
-	public VXModelPrimitive Model { get; set; }
+	public object Model { get; set; }
 
 	[Parameter]
-	public EventCallback<VXModelPrimitive> ModelChanged { get; set; }
+	public EventCallback<object> ModelChanged { get; set; }
+
+	private DxComboBox<TLookup, TField> VxCombo { get; set; }
 
 	private List<TLookup> DataList { get; set; }
 
@@ -97,25 +100,17 @@
 		get => MetaColumnAttributes.Description != null ? L[MetaColumnAttributes.Description] : LayoutFieldAttribute.Field;
 	}
 
-	private string sLookupCaption { get; set; }
+	private string sLookupCaption {
+		get => ApiResult != null ? SetDescriptionString(ApiResult) : string.Empty;
+		set { }
+	}
 
-	//Type TLookup
-	//{
-	//	get => MetaColumnAttributes.LookUpPrimitive != string.Empty ?
-	//					AppDomain.CurrentDomain
-	//						.GetAssemblies()
-	//						.SelectMany(t => t.GetTypes())
-	//						.Where(t => String.Equals(t.Name, MetaColumnAttributes.LookUpPrimitive, StringComparison.Ordinal))
-	//						.First()
-	//						: null;
-	//	set { }
-	//}
+	private TLookup ApiResult { get; set; }
 
 	private List<VXLookUpConfigAttribute> lookupConfig
 	{
 		get
 		{
-			//return lookupType.GetCustomAttributes(typeof(VXLookUpConfigAttribute), false).Cast<VXLookUpConfigAttribute>().ToList();
 			return typeof(TLookup).GetCustomAttributes(typeof(VXLookUpConfigAttribute), false).Cast<VXLookUpConfigAttribute>().ToList();
 		}
 	}
@@ -125,135 +120,85 @@
 		await base.OnInitializedAsync();
 	}
 
-	//RenderFragment RenderCombo<TLookup>() where TLookup : new()
-	//{
-	//	RenderFragment rf = __builder =>
-	//	{
-	//		Type ComboType = typeof(DxComboBox<,>).MakeGenericType(new Type[] { this.TLookup, typeof(TField) });
-
-	//		__builder.OpenComponent(0, ComboType);
-	//		__builder.AddAttribute(1, "Value", Field);
-	//		__builder.AddAttribute(2, "TextFieldName", lookupConfig[0].KeyField);
-	//		__builder.AddAttribute(3, "ValueFieldName", lookupConfig[0].KeyField);
-	//		__builder.AddAttribute(4, "ListRenderMode", ListRenderMode.Virtual);
-	//		__builder.AddAttribute(5, "FilteringMode", DataGridFilteringMode.StartsWith);
-	//		__builder.AddAttribute(6, "SelectedItemChanged", (TLookup value) => HandleSelectedItemChange(value));
-	//		__builder.AddAttribute(7, "ChildContent", (RenderFragment)(builder2 =>
-	//			{
-	//				var LookupMembers = from Member in this.TLookup.GetMembers()
-	//									join SelectMember in lookupConfig[0].Select.Split(",").ToList()
-	//									on Member.Name equals SelectMember
-	//									select Member;
-
-	//				bool first = true;
-	//				foreach (MemberInfo member in LookupMembers)
-	//				{
-	//					VXMetaColumnAttributes meta = (VXMetaColumnAttributes)member.GetCustomAttribute(typeof(VXMetaColumnAttributes));
-	//					if (meta == null || meta.ListVisibility != VXColumnListVisibility.Visible)
-	//						continue;
-	//					else
-	//					{
-	//						if (first)
-	//						{
-	//							//<DxListEditorColumn FieldName = "@member.Name"
-	//							//				Caption = "@(meta.Description != string.Empty ? L[meta.Description] : member.Name)"
-	//							//				Width = "100px" />
-
-	//							builder2.OpenComponent<DxListEditorColumn>(0);
-	//							builder2.AddAttribute(1, "Field", member.Name);
-	//							builder2.AddAttribute(2, "Caption", meta.Description != string.Empty ? L[meta.Description] : member.Name);
-	//							builder2.AddAttribute(3, "Width", "100px");
-	//							builder2.CloseComponent();
-
-	//							first = !first;
-	//						}
-	//						else
-	//						{
-	//							//<DxListEditorColumn FieldName = "@member.Name"
-	//							//				Caption = "@(meta.Description != string.Empty ? L[meta.Description] : member.Name)" />
-
-	//							builder2.OpenComponent<DxListEditorColumn>(0);
-	//							builder2.AddAttribute(1, "Field", member.Name);
-	//							builder2.AddAttribute(2, "Caption", meta.Description != string.Empty ? L[meta.Description] : member.Name);
-	//							builder2.AddAttribute(3, "Width", "100px");
-	//							builder2.CloseComponent();
-	//						}
-	//					}
-	//				}
-	//			}));
-	//		__builder.CloseComponent();
-	//	};
-	//	return rf;
-	//}
-
 	private async Task<IEnumerable<TLookup>> GetDataAsync(CancellationToken ct = default)
 	{
-		DataList = await lookupService.GetFull<TLookup>(lookupConfig[0].Filter, lookupConfig[0].OrderBy, 80000, 0, lookupConfig[0].Select);
+		DataList = await lookupService.GetFull<TLookup>(ReplaceParameters(lookupConfig[0].Filter), lookupConfig[0].OrderBy, 80000, 0, lookupConfig[0].Select);		//DataList = await lookupService.GetFull<TLookup>(lookupConfig[0].Filter, lookupConfig[0].OrderBy, 80000, 0, lookupConfig[0].Select);
 		return DataList;
-		//var result = await Task.Run(() => {
-		//	var method = lookupService.GetType().GetMethod(nameof(lookupService.GetFull)).MakeGenericMethod(TLookup);
-		//	return method.Invoke(lookupService, new object[] { lookupConfig[0].Filter, lookupConfig[0].OrderBy, 80, 0, lookupConfig[0].Select });
-		//});
-		//var value = await (dynamic)lookupService.GetType().GetMethod(nameof(lookupService.GetFull)).MakeGenericMethod(TLookup).Invoke(lookupService, new object[] { lookupConfig[0].Filter, lookupConfig[0].OrderBy, 80, 0, lookupConfig[0].Select });
-		//DataList = value;
-		//return value;
 	}
 
-	async Task HandleSelectedItemChange(TLookup value)
+	async Task HandleValueChange(TField newValue)
+	//async Task HandleValueChange(ChangeEventArgs value)
 	{
-		await Task.Run(() =>
+		//var newValue = (TField)value.Value;
+		if(newValue == null)
 		{
-			if (value != null)
-			{
-				var Lacc = ObjectAccessor.Create(value);
-				Field = (TField)Lacc[lookupConfig[0].KeyField];
-				sLookupCaption = Lacc[lookupConfig[0].DescriptionField].ToSafeString();
-			}
-			else
-			{
-				sLookupCaption = string.Empty;
-				Field = default(TField);
-			}
-		});
-		await FieldChanged.InvokeAsync(Field);
-		StateHasChanged();
-	}
+			return;
+		}
 
-	async Task HandleValueChange(TField value)
-	{
-		//TODO: completar Function para traer registro único del API
-		await FieldChanged.InvokeAsync(value);
-
-		TLookup ModelLookUp = new TLookup();
+		TLookup ModelLookup = new TLookup();
 
 		var accessor = TypeAccessor.Create(Model.GetType());
 
-		var Keys = ModelLookUp?.Keys();
+		var Keys = ModelLookup?.Keys();
 		if (Keys.Count > 1)
-        {
-            foreach (string key in ModelLookUp.Keys())
-            {
-                foreach (var member in accessor.GetMembers())
-                {
-                    if (member.Name == key)
-                    {
-                        ModelLookUp.SetValue(key, accessor[Model, key]);
-                        break;
-                    }
-                }
-            }
-        }
+		{
+			foreach (string key in ModelLookup.Keys())
+			{
+				foreach (var member in accessor.GetMembers())
+				{
+					if (member.Name == key)
+					{
+						ModelLookup.SetValue(key, accessor[Model, key]);
+						break;
+					}
+				}
+			}
+		}
+		//else
+		//{ 
+		ModelLookup.SetValue(lookupConfig[0].KeyField, newValue); 
+		//}
 
-		ModelLookUp.SetValue(lookupConfig[0].KeyField, value);
+		//var ApiResult = await lookupService.Get<TLookup>(ModelLookUp.Key);
+		ModelLookup = await lookupService.Get<TLookup>(ModelLookup.Key);
 
-		var nextBatch = await lookupService.Get<TLookup>(ModelLookUp.Key);
+		if (ModelLookup != null)
+		{
+			this.ApiResult = ModelLookup;
+			SetDescriptionString(ModelLookup);
+		}
+
+		Field = newValue;
+		await FieldChanged.InvokeAsync(Field);
+		VxCombo.Value = Field;
+		StateHasChanged();
 	}
 
-	private string RemplaceParameters(string sFiltro)
+	private string SetDescriptionString(TLookup value)
+	{
+		string sResult = string.Empty;
+		//await Task.Run(() =>
+		//{
+		if (value != null)
+		{
+			var Lacc = ObjectAccessor.Create(value);
+			sResult = Lacc[lookupConfig[0].DescriptionField].ToSafeString();
+		}
+		else
+		{
+			sResult = string.Empty;
+		}
+		//});
+		return sResult;
+	}
+
+	private string ReplaceParameters(string sFiltro)
 	{
 		string[] sTokens = sFiltro.Split(' ');
 
 		string sNewFilter = string.Empty;
+		var accessor = ObjectAccessor.Create(Model);
+
 		foreach (string sToken in sTokens)
 		{
 			string sValue = sToken;
@@ -272,29 +217,29 @@
 
 	private string GetValueFromModel(string sParameter)
 	{
-		object oModel = (object)Model;
-		var ModelDic = VXModelTransactionHelper.GetPrimitives(Model.GetType(), oModel);
+		//object oModel = (object)Model;
+		//var ModelDic = VXModelTransactionHelper.GetPrimitives(Model.GetType(), oModel);
 		string sField = sParameter.Substring(1).Trim();
 
-        foreach (KeyValuePair<string, object> item in ModelDic)
-        {
-            var accessor = TypeAccessor.Create(item.Value.GetType());
+        //foreach (KeyValuePair<string, object> item in ModelDic)
+        //{
+            var accessor = TypeAccessor.Create(Model.GetType());
 
             foreach (var member in accessor.GetMembers())
             {
                 if (member.Name == sField)
                 {
-                    Type tField = accessor[item.Value, sField].GetType();
+                    Type tField = accessor[Model, sField].GetType();
 
                     if ((tField == typeof(DateTime)) ||
                         (tField == typeof(string)))
-                        return string.Format("'{0}'", accessor[item.Value, sField].ToSafeString());
+                        return string.Format("'{0}'", accessor[Model, sField].ToSafeString());
                     else
-                        return accessor[item.Value, sField].ToSafeString();
+                        return accessor[Model, sField].ToSafeString();
 
                 }
             }
-        }
+        //}
 
         throw new Exception(string.Format("Parámetro {0} no existe en {1}", sParameter, LayoutFieldAttribute.Field));
     }
